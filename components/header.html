@@ -2,11 +2,11 @@
 <header class="site-header">
   <div class="header-inner container">
     <a href="/index.html" class="site-logo" aria-label="Bam Dell Disabilities and Orphanage Home - Let Love Lead">
-      <div class="site-logo-icon" aria-hidden="true" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); font-weight: 800; font-size: 1rem; letter-spacing: 0.5px;">BDH</div>
+      <div class="site-logo-icon" aria-hidden="true">BDH</div>
       <div>
-        <div style="line-height: 1.1; font-size: 1.15rem; font-weight: 800; color: var(--primary);">Bam Dell</div>
-        <div style="font-size: 0.72rem; font-weight: 700; color: var(--dark-muted); letter-spacing: 0.04em;">DISABILITIES & ORPHANAGE HOME</div>
-        <div style="font-size: 0.68rem; font-weight: 600; color: var(--accent-hover); font-style: italic; letter-spacing: 0.02em;">Let Love Lead</div>
+        <div style="line-height: 1.1; font-size: 1.1rem; font-weight: 800; color: var(--primary);">Bam Dell</div>
+        <div style="font-size: 0.7rem; font-weight: 700; color: var(--dark-muted); letter-spacing: 0.04em;">DISABILITIES & ORPHANAGE HOME</div>
+        <div style="font-size: 0.65rem; font-weight: 600; color: var(--accent-hover); font-style: italic; letter-spacing: 0.02em;">Let Love Lead</div>
       </div>
     </a>
 
@@ -26,11 +26,14 @@
         <li><a href="/volunteer.html" class="nav-link">Volunteer</a></li>
         <li><a href="/news.html" class="nav-link">News & Press</a></li>
         <li><a href="/contact.html" class="nav-link">Contact</a></li>
-        <li><a href="/donate.html" class="btn btn-accent btn-sm">Donate Now</a></li>
+        <li><a href="/donate.html" class="btn btn-accent btn-sm">💖 Donate Now</a></li>
       </ul>
     </nav>
   </div>
 </header>
+
+<!-- Mobile Navigation Backdrop Overlay -->
+<div id="nav-backdrop" class="nav-backdrop" aria-hidden="true"></div>
 
 <!-- Accessibility Floating Widget Panel -->
 <div class="a11y-toolbar">
@@ -38,7 +41,10 @@
     ♿ <span>Accessibility</span>
   </button>
   <div id="a11y-panel" class="a11y-panel" role="region" aria-label="Accessibility Settings">
-    <h3>Accessibility Tools</h3>
+    <div class="flex justify-between items-center" style="margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #E5E7EB;">
+      <h3 style="margin: 0; font-size: 1.1rem; color: #111827;">Accessibility Tools</h3>
+      <button type="button" id="a11y-close-btn" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--dark-muted); padding: 0.25rem 0.5rem;" aria-label="Close Accessibility Panel">✕</button>
+    </div>
     
     <div class="a11y-option-group">
       <span class="a11y-option-label">Text Size</span>

@@ -1,7 +1,7 @@
 /**
- * Hope Ability Foundation Nigeria - Main Site Script
+ * Bam Dell Disabilities and Orphanage Home - Main Site Script
  * Handles live animated stat counters, cookie consent banner, accordions,
- * progressive scroll reveal, lazy image loading, and infinite scroll stream.
+ * progressive scroll reveal, lazy image loading, and responsive touch interactions.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,6 +26,11 @@ function initLazyImages() {
 
 /* Progressive Scroll Reveal for Page Sections and Cards */
 function initScrollReveal() {
+  // Only reveal targets if prefers-reduced-motion is not active
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
   const revealTargets = document.querySelectorAll('.section, .card, .stat-box, article, .hero');
   if (!revealTargets.length) return;
 
@@ -35,8 +40,8 @@ function initScrollReveal() {
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -50px 0px',
-    threshold: 0.1
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.05
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
@@ -53,18 +58,18 @@ function initScrollReveal() {
 
 /* Infinite Scroll Engine for Fast Page Loading & Dynamic Content Streams */
 function initInfiniteScroll() {
-  const containers = document.querySelectorAll('[data-infinite-scroll="true"], .infinite-scroll-container, .grid-3, .grid-2');
+  // Only paginate containers explicitly annotated with data-infinite-scroll="true"
+  const containers = document.querySelectorAll('[data-infinite-scroll="true"]');
   if (!containers.length) return;
 
   containers.forEach(container => {
-    // Only paginate containers with more than 3 direct child cards or articles
     const items = Array.from(container.children).filter(child => 
       child.classList.contains('card') || child.tagName === 'ARTICLE'
     );
 
-    if (items.length <= 3) return;
+    if (items.length <= 4) return;
 
-    const BATCH_SIZE = 3;
+    const BATCH_SIZE = 4;
     let currentlyShown = BATCH_SIZE;
 
     // Initially hide items beyond BATCH_SIZE
@@ -88,7 +93,7 @@ function initInfiniteScroll() {
       if (currentlyShown >= items.length) {
         sentinel.innerHTML = `
           <div class="infinite-end-msg">
-            ✨ All items on this page loaded • Hope Ability Foundation Nigeria
+            ✨ All items on this page loaded • Bam Dell Disabilities and Orphanage Home
           </div>
         `;
         if (sentinelObserver) sentinelObserver.disconnect();
@@ -106,7 +111,7 @@ function initInfiniteScroll() {
       if (currentlyShown >= items.length) {
         sentinel.innerHTML = `
           <div class="infinite-end-msg">
-            ✨ All items on this page loaded • Hope Ability Foundation Nigeria
+            ✨ All items on this page loaded • Bam Dell Disabilities and Orphanage Home
           </div>
         `;
         if (sentinelObserver) sentinelObserver.disconnect();
@@ -124,8 +129,7 @@ function initInfiniteScroll() {
     const sentinelObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && currentlyShown < items.length) {
-          // Simulate rapid smooth fetch/render delay
-          setTimeout(loadNextBatch, 300);
+          setTimeout(loadNextBatch, 250);
         }
       });
     }, { rootMargin: '200px' });
@@ -152,7 +156,7 @@ function initCookieBanner() {
   const functionalCheck = document.getElementById('cookie-opt-functional');
 
   // Load existing cookie preferences from localStorage
-  const savedSettingsRaw = localStorage.getItem('hafn_cookie_settings') || localStorage.getItem('hafn_cookie_consent');
+  const savedSettingsRaw = localStorage.getItem('bamdell_cookie_settings') || localStorage.getItem('bamdell_cookie_consent');
   let savedSettings = null;
   if (savedSettingsRaw) {
     try {
@@ -192,8 +196,8 @@ function initCookieBanner() {
       functional: functionalVal,
       timestamp: new Date().toISOString()
     };
-    localStorage.setItem('hafn_cookie_settings', JSON.stringify(prefs));
-    localStorage.setItem('hafn_cookie_consent', 'accepted');
+    localStorage.setItem('bamdell_cookie_settings', JSON.stringify(prefs));
+    localStorage.setItem('bamdell_cookie_consent', 'accepted');
     
     if (banner) banner.style.display = 'none';
     if (modal) modal.style.display = 'none';
@@ -265,7 +269,7 @@ function initStatCounters() {
   if (!counters.length) return;
 
   const observerOptions = {
-    threshold: 0.5
+    threshold: 0.3
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
@@ -283,8 +287,8 @@ function initStatCounters() {
 function animateCounter(el) {
   const target = parseInt(el.getAttribute('data-target'), 10);
   const suffix = el.getAttribute('data-suffix') || '';
-  const duration = 2000; // 2 seconds
-  const stepTime = 30;
+  const duration = 1800;
+  const stepTime = 25;
   const steps = duration / stepTime;
   const increment = target / steps;
   
@@ -330,4 +334,3 @@ function updateCurrentYear() {
     yearEl.textContent = new Date().getFullYear();
   }
 }
-

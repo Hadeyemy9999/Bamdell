@@ -1,7 +1,8 @@
 /* ==========================================================================
-   HOPE ABILITY FOUNDATION NIGERIA (HAFN) - ACCESSIBILITY ENGINE STYLES
+   BAM DELL DISABILITIES AND ORPHANAGE HOME - ACCESSIBILITY ENGINE STYLES
    Provides WCAG 2.1 AA controls: High Contrast, Font Scaling, OpenDyslexic,
    Toolbar Widget, Underline Links, Focus Highlights.
+   Fully mobile responsive & ergonomically positioned.
    ========================================================================== */
 
 /* Accessibility Toolbar Floating Widget */
@@ -21,19 +22,21 @@
   border: 2px solid #FEF3C7;
   border-right: none;
   border-radius: var(--radius-md) 0 0 var(--radius-md);
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.95rem;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   box-shadow: -4px 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  touch-action: manipulation;
+  min-height: 44px;
 }
 
 .a11y-trigger-btn:hover, .a11y-trigger-btn:focus-visible {
-  background-color: #0F5132;
+  background-color: #0F766E;
   color: #FFFFFF;
 }
 
@@ -80,7 +83,7 @@
 
 .a11y-opt-btn {
   flex: 1;
-  padding: 0.4rem 0.5rem;
+  padding: 0.45rem 0.5rem;
   font-size: 0.85rem;
   font-weight: 600;
   background-color: #F3F4F6;
@@ -89,6 +92,8 @@
   cursor: pointer;
   color: #111827;
   text-align: center;
+  touch-action: manipulation;
+  min-height: 40px;
 }
 
 .a11y-opt-btn:hover {
@@ -96,9 +101,48 @@
 }
 
 .a11y-opt-btn.is-selected {
-  background-color: #0F5132;
+  background-color: #0D9488;
   color: #FFFFFF;
-  border-color: #0F5132;
+  border-color: #0D9488;
+}
+
+/* Mobile Placement for Accessibility Toolbar */
+@media (max-width: 768px) {
+  .a11y-toolbar {
+    top: auto;
+    bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+    left: 1rem;
+    right: auto;
+    align-items: flex-start;
+    z-index: 950;
+  }
+
+  .a11y-trigger-btn {
+    border: 2px solid #FEF3C7;
+    border-radius: 50px;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.82rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  }
+
+  .a11y-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 20px 20px 0 0;
+    border: none;
+    border-top: 3px solid var(--primary);
+    box-shadow: 0 -8px 30px rgba(0,0,0,0.3);
+    padding: 1.5rem 1.25rem 2rem;
+    z-index: 1200;
+    max-height: 85vh;
+    max-height: 85dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* HIGH CONTRAST MODE */
@@ -187,11 +231,11 @@ html.underline-links a {
 
 /* FONT SIZE SCALING */
 html.font-scale-large {
-  --base-font-size: 19px;
+  --base-font-size: 18px;
 }
 
 html.font-scale-xlarge {
-  --base-font-size: 22px;
+  --base-font-size: 21px;
 }
 
 /* SCREEN READER LIVE ANNOUNCER */
