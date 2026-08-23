@@ -1,0 +1,159 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid grid-4">
+      <!-- Column 1: Organization Overview -->
+      <div>
+        <div class="flex items-center gap-2" style="margin-bottom: 1rem;">
+          <div class="site-logo-icon" style="width:36px; height:36px; font-size:1.1rem;" aria-hidden="true">HAF</div>
+          <h3 style="margin-bottom: 0;">Hope Ability</h3>
+        </div>
+        <p style="font-size: 0.9rem; color: #9CA3AF;">
+          Restoring dignity, providing specialized education, therapy, and assistive aids for children with disabilities and vulnerable youth across Nigeria.
+        </p>
+        <div class="cac-badge">
+          <b>CAC Registered:</b> CAC/IT/NO 148290
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Navigation -->
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="/about.html">About Our Mission</a></li>
+          <li><a href="/programs.html">Our Programs & Services</a></li>
+          <li><a href="/impact.html">Impact Data & Reports</a></li>
+          <li><a href="/get-involved.html">Ways to Get Involved</a></li>
+          <li><a href="/volunteer.html">Volunteer With Us</a></li>
+          <li><a href="/news.html">Latest News & Press</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Governance & Legal -->
+      <div>
+        <h4>Governance & Policy</h4>
+        <ul class="footer-links">
+          <li><a href="/safeguarding.html">🛡️ Child Safeguarding Policy</a></li>
+          <li><a href="/privacy-policy.html">🔒 Privacy Policy (NDPR)</a></li>
+          <li><a href="/terms.html">📄 Terms & Conditions</a></li>
+          <li><button type="button" id="footer-cookie-settings-btn" class="footer-link-btn" style="background:none; border:none; color:#9CA3AF; cursor:pointer; font-size:0.9rem; padding:0; text-align:left; font-family:inherit;">🍪 Cookie Preferences</button></li>
+          <li><a href="/docs/annual-report.pdf" target="_blank" rel="noopener">📊 2025 Financial Statement (PDF)</a></li>
+          <li><a href="/contact.html">📞 Whistleblowing Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact & Newsletter -->
+      <div>
+        <h4>Stay Connected</h4>
+        <p style="font-size: 0.875rem; color: #9CA3AF;">Subscribe to our quarterly impact updates.</p>
+        
+        <form id="footer-newsletter-form" class="form-group" style="margin-bottom: 1rem;">
+          <label for="footer-email" class="sr-only">Your Email Address</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="email" id="footer-email" name="email" class="form-control" placeholder="Enter your email" required style="padding: 0.5rem 0.75rem; font-size: 0.9rem;" />
+            <button type="submit" class="btn btn-accent btn-sm">Join</button>
+          </div>
+          <div id="footer-newsletter-msg" class="form-error" role="alert"></div>
+        </form>
+
+        <p style="font-size: 0.85rem; color: #9CA3AF; margin-top: 0.5rem;">
+          📍 <b>Abuja:</b> Plot 402 CBD, Abuja.<br>
+          📍 <b>Lagos:</b> 12 Inclusive Way, Ikeja, Lagos.<br>
+          📞 +234 (0) 800 467 3646
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom flex justify-between items-center flex-wrap gap-2">
+      <div>
+        © <span id="current-year">2026</span> Hope Ability Foundation Nigeria (HAFN). All rights reserved.
+      </div>
+      <div>
+        Designed for Accessibility (WCAG 2.1 AA) | Hosted in Nigeria
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie Consent Banner (NDPR Compliant) -->
+<div id="cookie-consent-banner" class="cookie-banner" style="display: none;" role="region" aria-label="Cookie Consent">
+  <p>
+    <b>Privacy & Cookie Notice:</b> Hope Ability Foundation Nigeria uses essential cookies to ensure web accessibility and optional analytics under the Nigeria Data Protection Act (NDPA 2023). We never sell your data.
+  </p>
+  <div class="flex gap-2 flex-wrap items-center">
+    <button id="accept-cookies-btn" class="btn btn-accent btn-sm">Accept All</button>
+    <button id="open-cookie-settings-btn" class="btn btn-outline-white btn-sm">⚙️ Cookie Settings</button>
+    <button id="reject-cookies-btn" class="btn btn-outline-white btn-sm">Reject Optional</button>
+  </div>
+</div>
+
+<!-- Cookie Settings Modal -->
+<div id="cookie-settings-modal" class="modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="modal-content card" style="max-width: 580px; width: 92%; margin: 5vh auto; padding: 2rem; background: #FFFFFF; border-top: 5px solid var(--primary); max-height: 90vh; overflow-y: auto;">
+    <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
+      <h2 id="cookie-modal-title" style="margin: 0; font-size: 1.35rem; color: var(--dark);">🍪 Cookie Preferences & Settings</h2>
+      <button type="button" id="close-cookie-modal-btn" class="btn btn-sm btn-outline" aria-label="Close Modal" style="padding: 0.2rem 0.6rem; font-size: 1.1rem; line-height: 1;">&times;</button>
+    </div>
+    
+    <p style="font-size: 0.9rem; color: var(--dark-muted); margin-bottom: 1.5rem;">
+      In compliance with the Nigeria Data Protection Act (NDPA 2023), you can customize your cookie preferences below. Essential cookies are required for site security and accessibility tools.
+    </p>
+
+    <form id="cookie-settings-form">
+      <!-- Essential Cookies -->
+      <div class="card" style="padding: 1rem; margin-bottom: 1rem; background-color: var(--light-bg); border: 1px solid var(--border-color);">
+        <div class="flex justify-between items-center" style="margin-bottom: 0.35rem;">
+          <label for="cookie-opt-essential" style="font-weight: 700; color: var(--dark);">Essential & Security Cookies</label>
+          <span class="badge" style="background-color: var(--primary-light); color: var(--primary-hover);">Always Active</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--dark-muted); margin: 0;">
+          Required for core site navigation, WCAG accessibility settings (font scaling, high-contrast mode), and security verification.
+        </p>
+        <input type="checkbox" id="cookie-opt-essential" checked disabled style="display: none;" />
+      </div>
+
+      <!-- Analytics Cookies -->
+      <div class="card" style="padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border-color);">
+        <div class="flex justify-between items-center" style="margin-bottom: 0.35rem;">
+          <label for="cookie-opt-analytics" style="font-weight: 700; color: var(--dark); cursor: pointer;">Analytics & Performance Cookies</label>
+          <input type="checkbox" id="cookie-opt-analytics" checked style="width: 18px; height: 18px; cursor: pointer;" />
+        </div>
+        <p style="font-size: 0.85rem; color: var(--dark-muted); margin: 0;">
+          Helps us anonymously evaluate site traffic patterns to improve accessibility tools and optimize grant impact transparency reports.
+        </p>
+      </div>
+
+      <!-- Personalization Cookies -->
+      <div class="card" style="padding: 1rem; margin-bottom: 1.5rem; border: 1px solid var(--border-color);">
+        <div class="flex justify-between items-center" style="margin-bottom: 0.35rem;">
+          <label for="cookie-opt-functional" style="font-weight: 700; color: var(--dark); cursor: pointer;">Functional & Customization Cookies</label>
+          <input type="checkbox" id="cookie-opt-functional" checked style="width: 18px; height: 18px; cursor: pointer;" />
+        </div>
+        <p style="font-size: 0.85rem; color: var(--dark-muted); margin: 0;">
+          Remembers your form inputs, regional outreach filters, and saved accessibility preferences across sessions.
+        </p>
+      </div>
+
+      <div class="flex justify-end gap-2 flex-wrap">
+        <button type="button" id="modal-accept-all-btn" class="btn btn-outline btn-sm">Accept All</button>
+        <button type="submit" id="save-cookie-settings-btn" class="btn btn-accent btn-sm">Save Preferences & Confirm &rarr;</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Cookie Settings Saved Confirmation Toast Alert -->
+<div id="cookie-toast-notification" class="cookie-toast" style="display: none;" role="status" aria-live="polite">
+  <div class="flex items-center gap-3">
+    <span style="font-size: 1.5rem;">✅</span>
+    <div>
+      <div style="font-weight: 700; font-size: 0.95rem;">Cookie Settings Confirmed</div>
+      <div style="font-size: 0.85rem; opacity: 0.95;">Your privacy preferences have been saved successfully.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Quick Donate Button -->
+<a href="/donate.html" class="btn btn-accent floating-donate" aria-label="Quick Donate Now">
+  💖 Donate Now
+</a>

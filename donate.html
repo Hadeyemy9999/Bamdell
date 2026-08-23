@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate Now | Hope Ability Foundation Nigeria</title>
+  <meta name="description" content="Support children with disabilities in Nigeria. Donate securely via Paystack or direct bank transfer to fund wheelchairs, therapy, and inclusive education." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/accessibility.css" />
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="header-include"></div>
+
+  <main id="main-content">
+
+    <!-- Page Header -->
+    <section class="section section-alt" style="padding: 3.5rem 0;">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ul class="breadcrumb">
+            <li><a href="/index.html">Home</a></li>
+            <li>/</li>
+            <li aria-current="page">Donate</li>
+          </ul>
+        </nav>
+        <h1>Your Generosity Restores Hope & Mobility</h1>
+        <p style="font-size: 1.15rem; max-width: 800px;">
+          100% of public donations directly fund assistive devices, physical therapy sessions, and inclusive school scholarships for children across Nigeria.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Donation Section -->
+    <section class="section">
+      <div class="container grid grid-2 gap-4">
+        
+        <!-- Left: Interactive Paystack Checkout Form -->
+        <div class="card" style="padding: 2.5rem; border-top: 5px solid var(--accent); background-color: #FFFFFF;">
+          
+          <div class="flex justify-between items-center" style="margin-bottom: 1.5rem;">
+            <h2>Online Donation</h2>
+            <span class="badge badge-accent">🔒 Paystack Secured</span>
+          </div>
+
+          <!-- Frequency Toggle -->
+          <div class="form-group">
+            <label class="form-label">Select Giving Frequency</label>
+            <div class="a11y-btn-group" style="display: flex; gap: 0.5rem;">
+              <button type="button" class="btn btn-outline btn-sm donation-freq-btn is-selected" data-freq="one-time" style="flex: 1;">One-Time Gift</button>
+              <button type="button" class="btn btn-outline btn-sm donation-freq-btn" data-freq="monthly" style="flex: 1;">Monthly Partner 🔁</button>
+            </div>
+          </div>
+
+          <!-- Amount Presets -->
+          <div class="form-group">
+            <label class="form-label">Select Donation Amount (NGN)</label>
+            <div class="grid grid-2-fixed gap-2" style="margin-bottom: 1rem;">
+              <button type="button" class="btn btn-outline donation-preset" data-amount="5000">₦5,000</button>
+              <button type="button" class="btn btn-primary donation-preset" data-amount="15000">₦15,000</button>
+              <button type="button" class="btn btn-outline donation-preset" data-amount="50000">₦50,000</button>
+              <button type="button" class="btn btn-outline donation-preset" data-amount="100000">₦100,000</button>
+            </div>
+
+            <label for="custom-donation-amount" class="form-label" style="font-size: 0.9rem;">Or Enter Custom Amount (₦)</label>
+            <input type="number" id="custom-donation-amount" class="form-control" placeholder="e.g. 25000" min="1000" />
+          </div>
+
+          <!-- Live Impact Notice -->
+          <div id="donation-impact-notice" class="card" style="background-color: var(--primary-light); border-color: var(--primary); padding: 1rem; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--primary-hover); font-weight: 600;">
+            ₦15,000 funds a complete braille/adaptive learning kit and specialized school supplies for one child.
+          </div>
+
+          <!-- Donor Details -->
+          <div class="form-group">
+            <label for="donor-email" class="form-label">Your Email Address (for receipt) <span class="required">*</span></label>
+            <input type="email" id="donor-email" class="form-control" placeholder="donor@example.com" required />
+          </div>
+
+          <button id="paystack-checkout-btn" class="btn btn-accent btn-lg" style="width: 100%; margin-top: 1rem;">
+            Proceed to Secure Payment Gate &rarr;
+          </button>
+
+          <p style="font-size: 0.8rem; color: var(--dark-muted); text-align: center; margin-top: 1rem;">
+            Supports Nigerian Cards (Mastercard, Visa, Verve), Bank Transfer, USSD, and Apple Pay.
+          </p>
+        </div>
+
+        <!-- Right: Direct Bank Transfer Details & Transparency breakdown -->
+        <div>
+          <div class="card" style="padding: 2.5rem; border-top: 5px solid var(--primary); margin-bottom: 2rem;">
+            <h2>Direct Nigerian Bank Transfer</h2>
+            <p style="font-size: 0.9rem; color: var(--dark-muted); margin-bottom: 1.5rem;">
+              Prefer a direct bank transfer or standing order? Use our dedicated official non-profit accounts below:
+            </p>
+
+            <!-- Bank Account 1: GTBank -->
+            <div class="card" style="background-color: #FAFAFA; border: 1px solid var(--border-color); margin-bottom: 1rem; padding: 1.25rem;">
+              <div class="flex justify-between items-center">
+                <div>
+                  <h3 style="font-size: 1.1rem; color: #D97706; margin-bottom: 0.2rem;">Guaranty Trust Bank (GTBank)</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.2rem;">Account Name: <b>HOPE ABILITY FOUNDATION NIGERIA</b></p>
+                  <p style="font-size: 1.2rem; font-weight: 800; color: var(--dark);">0481920381</p>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline copy-bank-btn" data-copy="0481920381" aria-label="Copy GTBank Account Number">
+                  📋 Copy
+                </button>
+              </div>
+            </div>
+
+            <!-- Bank Account 2: Zenith Bank -->
+            <div class="card" style="background-color: #FAFAFA; border: 1px solid var(--border-color); padding: 1.25rem;">
+              <div class="flex justify-between items-center">
+                <div>
+                  <h3 style="font-size: 1.1rem; color: #DC2626; margin-bottom: 0.2rem;">Zenith Bank PLC</h3>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.2rem;">Account Name: <b>HOPE ABILITY FOUNDATION NIGERIA</b></p>
+                  <p style="font-size: 1.2rem; font-weight: 800; color: var(--dark);">1018392014</p>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline copy-bank-btn" data-copy="1018392014" aria-label="Copy Zenith Bank Account Number">
+                  📋 Copy
+                </button>
+              </div>
+            </div>
+
+            <p style="font-size: 0.85rem; color: var(--dark-muted); margin-top: 1rem;">
+              *After transferring, please send your transaction receipt to <b>finance@hopeability.org.ng</b> for official acknowledgement and tax deduction receipt.
+            </p>
+          </div>
+
+          <!-- Where Your Money Goes Breakdown -->
+          <div class="card" style="padding: 2rem; background-color: var(--primary-light); border-color: var(--primary);">
+            <h3 style="color: var(--primary);">Where Your Money Goes</h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; font-size: 0.9rem;">
+              <li>• <b>₦5,000</b> — School meals & therapeutic snacks for 1 month.</li>
+              <li>• <b>₦15,000</b> — Braille slate, stylus & tactile learning kit.</li>
+              <li>• <b>₦50,000</b> — Terrain-hardened pediatric wheelchair.</li>
+              <li>• <b>₦100,000</b> — Parent business micro-grant or full year scholarship.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/accessibility.js"></script>
+  <script src="/assets/js/form-config.v1.js"></script>
+  <script src="/assets/js/spam-guard.js"></script>
+  <script src="/assets/js/forms.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

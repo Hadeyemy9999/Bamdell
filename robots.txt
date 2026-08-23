@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hopeability.org.ng/sitemap.xml

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Hope Ability Foundation Nigeria</title>
+  <meta name="description" content="Get in touch with Hope Ability Foundation Nigeria. Visit our offices in Lagos and Abuja, or send us a message." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/accessibility.css" />
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="header-include"></div>
+
+  <main id="main-content">
+
+    <!-- Page Header -->
+    <section class="section section-alt" style="padding: 3.5rem 0;">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ul class="breadcrumb">
+            <li><a href="/index.html">Home</a></li>
+            <li>/</li>
+            <li aria-current="page">Contact Us</li>
+          </ul>
+        </nav>
+        <h1>We Are Here to Listen, Support & Collaborate</h1>
+        <p style="font-size: 1.15rem; max-width: 800px;">
+          Have questions about our programs, referring a child, or volunteering? Reach out to our team in Lagos or Abuja.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Details & Form Grid -->
+    <section class="section">
+      <div class="container grid grid-2 gap-4">
+        
+        <!-- Left: Physical Offices & Direct Contact Info -->
+        <div>
+          <h2>Our Centers & Contact Info</h2>
+          <p style="margin-bottom: 2rem;">Visit or call our offices Monday to Friday between 8:00 AM and 5:00 PM WAT:</p>
+
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            
+            <!-- Lagos Hub -->
+            <div class="card" style="border-left: 5px solid var(--primary);">
+              <h3>🇳🇬 Lagos Rehabilitation & Outreach Hub</h3>
+              <p style="font-size: 0.95rem; color: var(--dark-muted); margin: 0.5rem 0;">
+                📍 <b>12 Inclusive Way, Off Allen Avenue, Ikeja, Lagos State</b><br>
+                📞 Phone: +234 (0) 800 467 3646 (Toll-Free)<br>
+                ✉️ Email: <b>lagos@hopeability.org.ng</b>
+              </p>
+            </div>
+
+            <!-- Abuja Office -->
+            <div class="card" style="border-left: 5px solid var(--accent);">
+              <h3>🏛️ FCT Abuja National Headquarters</h3>
+              <p style="font-size: 0.95rem; color: var(--dark-muted); margin: 0.5rem 0;">
+                📍 <b>Plot 402 Central Business District, FCT Abuja</b><br>
+                📞 Phone: +234 (0) 812 345 6789<br>
+                ✉️ Email: <b>info@hopeability.org.ng</b>
+              </p>
+            </div>
+
+            <!-- Whistleblower & Child Safeguarding Hotline -->
+            <div class="card" style="background-color: var(--primary-light); border-color: var(--primary);">
+              <h3 style="color: var(--primary);">🛡️ Child Safeguarding & Confidential Hotline</h3>
+              <p style="font-size: 0.85rem; color: var(--dark-muted); margin: 0.5rem 0;">
+                To report any child protection concern or conduct violation confidentially:<br>
+                📞 <b>+234 (0) 800 723 3482</b> | ✉️ <b>safeguarding@hopeability.org.ng</b>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div>
+          <div class="card" style="padding: 2.5rem; border-top: 5px solid var(--primary);">
+            <h2 style="margin-bottom: 0.5rem;">Send Us a Message</h2>
+            <p style="font-size: 0.9rem; color: var(--dark-muted); margin-bottom: 1.5rem;">
+              Fill out the form below. We typically respond within 24 business hours.
+            </p>
+
+            <form method="POST" data-validate="true" id="contact-form" enctype="multipart/form-data">
+              
+              <!-- Anti-Spam Off-Screen Honeypot (Do Not Remove) -->
+              <div style="position: absolute; left: -5000px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+                <label for="contact-botcheck">Leave this empty</label>
+                <input type="text" id="contact-botcheck" name="botcheck" tabindex="-1" autocomplete="off" />
+              </div>
+              
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Your Name <span class="required">*</span></label>
+                <input type="text" id="contact-name" name="name" class="form-control" placeholder="e.g. Chukwuma Okafor" required />
+                <div class="form-error" role="alert"></div>
+              </div>
+
+              <div class="grid grid-2-fixed gap-2">
+                <div class="form-group">
+                  <label for="contact-email" class="form-label">Email Address <span class="required">*</span></label>
+                  <input type="email" id="contact-email" name="email" class="form-control" placeholder="name@example.com" required />
+                  <div class="form-error" role="alert"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-phone" class="form-label">Phone Number</label>
+                  <input type="tel" id="contact-phone" name="phone" class="form-control" placeholder="+234 800 000 0000" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Nature of Inquiry <span class="required">*</span></label>
+                <select id="contact-subject" name="subject" class="form-control" required>
+                  <option value="">-- Select Subject --</option>
+                  <option value="General Enquiry">General Information</option>
+                  <option value="Beneficiary Referral">Referring a Child with Disability</option>
+                  <option value="Corporate CSR">Corporate CSR & Sponsorship</option>
+                  <option value="Media & Press">Press / Media Interview</option>
+                  <option value="In-Kind Donation">In-Kind Equipment Donation</option>
+                </select>
+                <div class="form-error" role="alert"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Message <span class="required">*</span></label>
+                <textarea id="contact-message" name="message" class="form-control" rows="4" placeholder="How can we assist you?" required></textarea>
+                <div class="form-error" role="alert"></div>
+              </div>
+
+              <!-- Optional File Attachment -->
+              <div class="form-group">
+                <label for="contact-document" class="form-label">Supporting Document (Optional)</label>
+                <input type="file" id="contact-document" name="document" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+                <p style="font-size: 0.8rem; color: var(--dark-muted); margin-top: 0.25rem;">
+                  Attach medical reports, child referral notes, or CSR sponsorship briefs (PDF, DOCX, JPG - Max 4MB).
+                </p>
+                <div class="form-error" role="alert"></div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Send Message &rarr;</button>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/accessibility.js"></script>
+  <script src="/assets/js/form-config.v1.js"></script>
+  <script src="/assets/js/spam-guard.js"></script>
+  <script src="/assets/js/forms.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

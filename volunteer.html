@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volunteer Opportunities | Hope Ability Foundation Nigeria</title>
+  <meta name="description" content="Apply to volunteer with Hope Ability Foundation Nigeria. Join our dedicated team of physiotherapists, special educators, and disability advocates." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/accessibility.css" />
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="header-include"></div>
+
+  <main id="main-content">
+
+    <!-- Page Header -->
+    <section class="section section-alt" style="padding: 3.5rem 0;">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ul class="breadcrumb">
+            <li><a href="/index.html">Home</a></li>
+            <li>/</li>
+            <li><a href="/get-involved.html">Get Involved</a></li>
+            <li>/</li>
+            <li aria-current="page">Volunteer</li>
+          </ul>
+        </nav>
+        <h1>Become a Hope Ability Volunteer</h1>
+        <p style="font-size: 1.15rem; max-width: 800px;">
+          Use your time and talents to bring dignity, joy, and education to children with disabilities across Nigeria.
+        </p>
+      </div>
+    </section>
+
+    <!-- Volunteer Form & Opportunities Section -->
+    <section class="section">
+      <div class="container grid grid-2 gap-4">
+        
+        <!-- Left: Open Volunteer Roles & Safeguarding Notice -->
+        <div>
+          <h2>Open Volunteer Positions</h2>
+          <p style="margin-bottom: 2rem;">We offer flexible full-time, part-time, and weekend volunteer opportunities in Lagos, Abuja, and remote settings:</p>
+
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            
+            <div class="card" style="border-left: 4px solid var(--primary);">
+              <h3>🩺 Volunteer Physiotherapist / Occupational Therapist</h3>
+              <p style="font-size: 0.9rem; color: var(--dark-muted);">
+                <b>Location:</b> Lagos (Ikeja) or Abuja Center • 4–8 hours/week<br>
+                Provide supervised physical rehabilitation and motor skills therapy for children with cerebral palsy and physical impairments.
+              </p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--accent);">
+              <h3>📖 Braille & Sign Language Literacy Instructor</h3>
+              <p style="font-size: 0.9rem; color: var(--dark-muted);">
+                <b>Location:</b> Partner Schools (Lagos/Abuja) • Flexible<br>
+                Assist visually impaired and deaf pupils with tactile reading, braille slate usage, and Nigerian Sign Language (NSL) practice.
+              </p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--secondary);">
+              <h3>📢 Community Outreach & Advocacy Volunteer</h3>
+              <p style="font-size: 0.9rem; color: var(--dark-muted);">
+                <b>Location:</b> Field Outreaches / Hybrid<br>
+                Help organize community town halls, stigma awareness workshops, and parent support circle events.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Mandatory Safeguarding Notice -->
+          <div class="card" style="margin-top: 2rem; background-color: #FEF3C7; border-color: var(--accent);">
+            <div class="flex items-center gap-2" style="margin-bottom: 0.5rem;">
+              <div style="font-size: 1.5rem;">🛡️</div>
+              <h3 style="color: var(--accent-hover); margin-bottom: 0;">Child Safeguarding & Background Vetting</h3>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--dark); margin: 0;">
+              Because our volunteers work directly with vulnerable children, all applicants must undergo background vetting, reference checks, and complete our mandatory Child Safeguarding Code of Conduct training before field placement.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Volunteer Application Form -->
+        <div>
+          <div class="card" style="padding: 2.5rem; border-top: 5px solid var(--primary);">
+            <h2 style="margin-bottom: 0.5rem;">Volunteer Application Form</h2>
+            <p style="font-size: 0.9rem; color: var(--dark-muted); margin-bottom: 1.5rem;">
+              Fill out the form below. Our volunteer coordinator will reach out to schedule an orientation call.
+            </p>
+
+            <form method="POST" data-validate="true" id="volunteer-form" enctype="multipart/form-data">
+              
+              <!-- Anti-Spam Off-Screen Honeypot (Do Not Remove) -->
+              <div style="position: absolute; left: -5000px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+                <label for="vol-botcheck">Leave this empty</label>
+                <input type="text" id="vol-botcheck" name="botcheck" tabindex="-1" autocomplete="off" />
+              </div>
+              
+              <div class="form-group">
+                <label for="vol-name" class="form-label">Full Name <span class="required">*</span></label>
+                <input type="text" id="vol-name" name="fullName" class="form-control" placeholder="e.g. Dr. Amina Bello" required />
+                <div class="form-error" role="alert"></div>
+              </div>
+
+              <div class="grid grid-2-fixed gap-2">
+                <div class="form-group">
+                  <label for="vol-email" class="form-label">Email Address <span class="required">*</span></label>
+                  <input type="email" id="vol-email" name="email" class="form-control" placeholder="name@example.com" required />
+                  <div class="form-error" role="alert"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="vol-phone" class="form-label">Phone Number <span class="required">*</span></label>
+                  <input type="tel" id="vol-phone" name="phone" class="form-control" placeholder="+234 800 000 0000" required />
+                  <div class="form-error" role="alert"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="vol-state" class="form-label">Primary Location / State <span class="required">*</span></label>
+                <select id="vol-state" name="state" class="form-control" required>
+                  <option value="">-- Select Your State --</option>
+                  <option value="Lagos">Lagos State</option>
+                  <option value="Abuja">FCT Abuja</option>
+                  <option value="Ogun">Ogun State</option>
+                  <option value="Kano">Kano State</option>
+                  <option value="Rivers">Rivers State</option>
+                  <option value="Other">Other / Remote</option>
+                </select>
+                <div class="form-error" role="alert"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="vol-role" class="form-label">Area of Interest <span class="required">*</span></label>
+                <select id="vol-role" name="role" class="form-control" required>
+                  <option value="">-- Select Primary Role --</option>
+                  <option value="Physiotherapy">Pediatric Therapy / Health</option>
+                  <option value="Education">Special Education & Braille</option>
+                  <option value="Outreach">Community Outreach & Events</option>
+                  <option value="Media">Media, Photography & Admin</option>
+                </select>
+                <div class="form-error" role="alert"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="vol-experience" class="form-label">Relevant Experience & Motivation</label>
+                <textarea id="vol-experience" name="experience" class="form-control" rows="3" placeholder="Briefly describe your background or why you want to support children with disabilities..."></textarea>
+              </div>
+
+              <!-- Optional CV / Credentials Upload -->
+              <div class="form-group">
+                <label for="vol-cv" class="form-label">Upload CV / Credentials (Optional)</label>
+                <input type="file" id="vol-cv" name="cvFile" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+                <p style="font-size: 0.8rem; color: var(--dark-muted); margin-top: 0.25rem;">
+                  Attach your resume or professional license (PDF, DOCX, JPG - Max 4MB).
+                </p>
+                <div class="form-error" role="alert"></div>
+              </div>
+
+              <div class="form-group" style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                <input type="checkbox" id="vol-safeguarding" name="safeguardingConsent" required style="margin-top: 0.25rem;" />
+                <label for="vol-safeguarding" style="font-size: 0.85rem; color: var(--dark-muted);">
+                  I agree to abide by HAFN's <a href="/safeguarding.html" target="_blank">Child Safeguarding Policy</a> and consent to standard background vetting. <span class="required">*</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">Submit Volunteer Application &rarr;</button>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/accessibility.js"></script>
+  <script src="/assets/js/form-config.v1.js"></script>
+  <script src="/assets/js/spam-guard.js"></script>
+  <script src="/assets/js/forms.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

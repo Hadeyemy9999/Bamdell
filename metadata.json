@@ -1,0 +1,6 @@
+{
+  "name": "Hope Ability Foundation Nigeria",
+  "description": "Empowering children with disabilities and vulnerable youth across Nigeria through education, therapy, assistive technology, and community advocacy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

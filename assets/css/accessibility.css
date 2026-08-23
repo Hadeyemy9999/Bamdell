@@ -1,0 +1,216 @@
+/* ==========================================================================
+   HOPE ABILITY FOUNDATION NIGERIA (HAFN) - ACCESSIBILITY ENGINE STYLES
+   Provides WCAG 2.1 AA controls: High Contrast, Font Scaling, OpenDyslexic,
+   Toolbar Widget, Underline Links, Focus Highlights.
+   ========================================================================== */
+
+/* Accessibility Toolbar Floating Widget */
+.a11y-toolbar {
+  position: fixed;
+  top: 120px;
+  right: 0;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.a11y-trigger-btn {
+  background-color: #111827;
+  color: #FFFFFF;
+  border: 2px solid #FEF3C7;
+  border-right: none;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: -4px 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.a11y-trigger-btn:hover, .a11y-trigger-btn:focus-visible {
+  background-color: #0F5132;
+  color: #FFFFFF;
+}
+
+.a11y-panel {
+  display: none;
+  background-color: #FFFFFF;
+  color: #111827;
+  border: 2px solid #111827;
+  border-radius: var(--radius-md) 0 var(--radius-md) var(--radius-md);
+  padding: 1.25rem;
+  width: 290px;
+  box-shadow: -6px 6px 20px rgba(0,0,0,0.2);
+  margin-top: 0.25rem;
+}
+
+.a11y-panel.is-active {
+  display: block;
+}
+
+.a11y-panel h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #E5E7EB;
+  color: #111827;
+}
+
+.a11y-option-group {
+  margin-bottom: 1rem;
+}
+
+.a11y-option-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: #374151;
+}
+
+.a11y-btn-group {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.a11y-opt-btn {
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: #F3F4F6;
+  border: 1px solid #D1D5DB;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: #111827;
+  text-align: center;
+}
+
+.a11y-opt-btn:hover {
+  background-color: #E5E7EB;
+}
+
+.a11y-opt-btn.is-selected {
+  background-color: #0F5132;
+  color: #FFFFFF;
+  border-color: #0F5132;
+}
+
+/* HIGH CONTRAST MODE */
+html.high-contrast {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+}
+
+html.high-contrast body,
+html.high-contrast header,
+html.high-contrast footer,
+html.high-contrast main,
+html.high-contrast .card,
+html.high-contrast .stat-box,
+html.high-contrast .a11y-panel,
+html.high-contrast .nav-menu {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+  border-color: #FFFF00 !important;
+}
+
+html.high-contrast h1,
+html.high-contrast h2,
+html.high-contrast h3,
+html.high-contrast h4,
+html.high-contrast h5,
+html.high-contrast h6,
+html.high-contrast p,
+html.high-contrast span,
+html.high-contrast label {
+  color: #FFFF00 !important;
+}
+
+html.high-contrast a {
+  color: #00FFFF !important;
+  text-decoration: underline !important;
+}
+
+html.high-contrast .btn,
+html.high-contrast .a11y-trigger-btn {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+  border: 3px solid #FFFF00 !important;
+}
+
+html.high-contrast .btn:hover {
+  background-color: #FFFF00 !important;
+  color: #000000 !important;
+}
+
+html.high-contrast .form-control {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+  border: 2px solid #FFFF00 !important;
+}
+
+/* DYSLEXIA FRIENDLY FONT MODE */
+html.dyslexia-font {
+  font-family: 'Comic Sans MS', 'OpenDyslexic', 'Courier New', sans-serif !important;
+  letter-spacing: 0.08em !important;
+  word-spacing: 0.15em !important;
+  line-height: 1.8 !important;
+}
+
+html.dyslexia-font h1, 
+html.dyslexia-font h2, 
+html.dyslexia-font h3, 
+html.dyslexia-font h4, 
+html.dyslexia-font p, 
+html.dyslexia-font a, 
+html.dyslexia-font button,
+html.dyslexia-font input,
+html.dyslexia-font select,
+html.dyslexia-font textarea {
+  font-family: inherit !important;
+  letter-spacing: inherit !important;
+  word-spacing: inherit !important;
+}
+
+/* UNDERLINE ALL LINKS MODE */
+html.underline-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 2px !important;
+}
+
+/* FONT SIZE SCALING */
+html.font-scale-large {
+  --base-font-size: 19px;
+}
+
+html.font-scale-xlarge {
+  --base-font-size: 22px;
+}
+
+/* SCREEN READER LIVE ANNOUNCER */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-only-focusable:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
