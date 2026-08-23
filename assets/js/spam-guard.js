@@ -1,5 +1,5 @@
 /**
- * Hope Ability Foundation Nigeria - Client-Side Spam Guard Engine
+ * Bam Dell Disabilities and Orphanage Home - Client-Side Spam Guard Engine
  * Protects serverless SMTP endpoints from automated bots, disposable emails, and flood attacks.
  */
 
@@ -14,7 +14,7 @@
     'mohmal.com', 'emailondeck.com', 'temporarymail.com', 'nada.ltd'
   ]);
 
-  const RATE_LIMIT_KEY = 'hafn_form_submissions';
+  const RATE_LIMIT_KEY = 'bamdell_form_submissions';
   const MAX_SUBMISSIONS_PER_WINDOW = 5;
   const WINDOW_MINUTES = 15;
 

@@ -1,7 +1,7 @@
-# Hope Ability Foundation Nigeria — Static Frontend + Serverless Backend Architecture
+# Bam Dell Disabilities and Orphanage Home — Static Frontend + Serverless Backend Architecture
 
 > **Architecture Specification & Deployment Blueprint**  
-> Tailored for Hope Ability Foundation Nigeria (HAFN) to decouple the static, accessible, high-performance website from secure, serverless form processing and SMTP email notification services.
+> Tailored for Bam Dell Disabilities and Orphanage Home (*Let Love Lead*) to decouple the static, accessible, high-performance website from secure, serverless form processing and SMTP email notification services.
 
 ---
 
@@ -100,16 +100,16 @@ Uses `nodemailer` with two distinct mailbox transporters:
 
 #### Two Emails are Dispatched per Valid Submission:
 1. **Submitter Confirmation Email**:
-   - Branded in HAFN forest green (`#0F5132`) and warm amber.
+   - Branded in Bam Dell vibrant teal (`#0D9488`) and warm amber.
    - Acknowledges receipt, details response times (24–48 hours), and includes the safeguarding hotline.
 2. **Internal Staff Notification Email**:
-   - Sent to `EMAIL_TO` (`inbox@hopeability.org.ng`).
+   - Sent to `EMAIL_TO` (`inbox@bamdellhome.org.ng`).
    - Includes full applicant contact details, location, role/subject, formatted message, timestamp (WAT), and attached files.
    - Sets `replyTo` directly to the applicant's email address for one-click email replies.
 
 ### 3.4 CORS Helper (`services/cors.js`)
 - Protects the serverless endpoints from unauthorized third-party origins.
-- Allows the live production domain (`https://hopeability.org.ng`, `https://www.hopeability.org.ng`) and local development ports (`http://localhost:3000`, `5173`, `8080`).
+- Allows the live production domain (`https://bamdellhome.org.ng`, `https://www.bamdellhome.org.ng`) and local development ports (`http://localhost:3000`, `5173`, `8080`).
 - Supports preview URLs using regex (`*.vercel.app`, `*.run.app`).
 - Responds with `204 No Content` to HTTP `OPTIONS` preflight requests.
 
@@ -121,12 +121,12 @@ Set these in your Vercel Project Dashboard under **Settings > Environment Variab
 | `SMTP_HOST` | `smtp.zoho.com` / `smtp.gmail.com` | Your mail provider's SMTP host |
 | `SMTP_PORT` | `465` | Secure SSL/TLS port |
 | `SMTP_SECURE` | `true` | Set to `true` for port 465 |
-| `SMTP_USER_VOLUNTEER` | `volunteer@hopeability.org.ng` | Volunteer mailbox username |
+| `SMTP_USER_VOLUNTEER` | `volunteer@bamdellhome.org.ng` | Volunteer mailbox username |
 | `SMTP_PASS_VOLUNTEER` | `********` | Mailbox App Password |
-| `SMTP_USER_CONTACT` | `info@hopeability.org.ng` | Contact mailbox username |
+| `SMTP_USER_CONTACT` | `info@bamdellhome.org.ng` | Contact mailbox username |
 | `SMTP_PASS_CONTACT` | `********` | Mailbox App Password |
-| `EMAIL_TO` | `inbox@hopeability.org.ng` | Central NGO review mailbox |
-| `EMAIL_FROM_NAME` | `Hope Ability Foundation Nigeria` | Display name on outbound emails |
+| `EMAIL_TO` | `inbox@bamdellhome.org.ng` | Central NGO review mailbox |
+| `EMAIL_FROM_NAME` | `Bam Dell Disabilities and Orphanage Home` | Display name on outbound emails |
 
 ---
 
@@ -190,7 +190,7 @@ Multi-layer bot and spam filtration before making any network request:
    ```bash
    git init
    git add .
-   git commit -m "feat: initial serverless backend for Hope Ability Foundation"
+   git commit -m "feat: initial serverless backend for Bam Dell Disabilities and Orphanage Home"
    ```
 3. Deploy to Vercel:
    ```bash

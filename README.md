@@ -1,6 +1,6 @@
-# Hope Ability Foundation Nigeria (HAFN) — Official NGO Website
+# Bam Dell Disabilities and Orphanage Home — Official NGO Website
 
-A complete, production-ready, accessibility-first web application for **Hope Ability Foundation Nigeria** — a CAC-registered non-governmental organization serving children with disabilities and less-privileged children across Nigeria.
+A complete, production-ready, accessibility-first web application for **Bam Dell Disabilities and Orphanage Home** (*Let Love Lead*) — a registered non-governmental organization caring for children with special needs, motherless babies, and orphans in Ibadan, Nigeria.
 
 ---
 

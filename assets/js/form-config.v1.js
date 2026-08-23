@@ -1,5 +1,5 @@
 /**
- * Hope Ability Foundation Nigeria - Backend API Configuration (v1)
+ * Bam Dell Disabilities and Orphanage Home - Backend API Configuration (v1)
  * Single Source of Truth for Serverless Endpoint Routing
  * Cache-busted for aggressive edge caching CDNs
  */

@@ -1,5 +1,5 @@
 /**
- * Hope Ability Foundation Nigeria - Accessibility Suite (WCAG 2.1 AA)
+ * Bam Dell Disabilities and Orphanage Home - Accessibility Suite (WCAG 2.1 AA)
  * Handles font size scaling, high-contrast, dyslexia font, link underlines,
  * and screen reader live notifications.
  */
@@ -57,7 +57,7 @@ window.initAccessibilityEngine = function() {
     contrastBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('high-contrast');
       const isHc = document.documentElement.classList.contains('high-contrast');
-      localStorage.setItem('hafn_a11y_contrast', isHc ? 'enabled' : 'disabled');
+      localStorage.setItem('bamdell_a11y_contrast', isHc ? 'enabled' : 'disabled');
       contrastBtn.classList.toggle('is-selected', isHc);
       announceA11yChange(isHc ? 'High contrast mode enabled' : 'High contrast mode disabled');
     });
@@ -69,7 +69,7 @@ window.initAccessibilityEngine = function() {
     dyslexiaBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('dyslexia-font');
       const isDys = document.documentElement.classList.contains('dyslexia-font');
-      localStorage.setItem('hafn_a11y_dyslexia', isDys ? 'enabled' : 'disabled');
+      localStorage.setItem('bamdell_a11y_dyslexia', isDys ? 'enabled' : 'disabled');
       dyslexiaBtn.classList.toggle('is-selected', isDys);
       announceA11yChange(isDys ? 'Dyslexia friendly font enabled' : 'Dyslexia friendly font disabled');
     });
@@ -81,7 +81,7 @@ window.initAccessibilityEngine = function() {
     underlineBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('underline-links');
       const isUnder = document.documentElement.classList.contains('underline-links');
-      localStorage.setItem('hafn_a11y_underline', isUnder ? 'enabled' : 'disabled');
+      localStorage.setItem('bamdell_a11y_underline', isUnder ? 'enabled' : 'disabled');
       underlineBtn.classList.toggle('is-selected', isUnder);
       announceA11yChange(isUnder ? 'Underline links enabled' : 'Underline links disabled');
     });
@@ -91,6 +91,10 @@ window.initAccessibilityEngine = function() {
   const resetBtn = document.getElementById('a11y-reset-btn');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
+      localStorage.removeItem('bamdell_a11y_font');
+      localStorage.removeItem('bamdell_a11y_contrast');
+      localStorage.removeItem('bamdell_a11y_dyslexia');
+      localStorage.removeItem('bamdell_a11y_underline');
       localStorage.removeItem('hafn_a11y_font');
       localStorage.removeItem('hafn_a11y_contrast');
       localStorage.removeItem('hafn_a11y_dyslexia');
@@ -117,26 +121,26 @@ function setFontScale(scale) {
   } else if (scale === 'xlarge') {
     document.documentElement.classList.add('font-scale-xlarge');
   }
-  localStorage.setItem('hafn_a11y_font', scale);
+  localStorage.setItem('bamdell_a11y_font', scale);
 }
 
 function applySavedA11yPrefs() {
-  const font = localStorage.getItem('hafn_a11y_font');
+  const font = localStorage.getItem('bamdell_a11y_font') || localStorage.getItem('hafn_a11y_font');
   if (font) setFontScale(font);
 
-  if (localStorage.getItem('hafn_a11y_contrast') === 'enabled') {
+  if (localStorage.getItem('bamdell_a11y_contrast') === 'enabled' || localStorage.getItem('hafn_a11y_contrast') === 'enabled') {
     document.documentElement.classList.add('high-contrast');
     const contrastBtn = document.getElementById('a11y-contrast-toggle');
     if (contrastBtn) contrastBtn.classList.add('is-selected');
   }
 
-  if (localStorage.getItem('hafn_a11y_dyslexia') === 'enabled') {
+  if (localStorage.getItem('bamdell_a11y_dyslexia') === 'enabled' || localStorage.getItem('hafn_a11y_dyslexia') === 'enabled') {
     document.documentElement.classList.add('dyslexia-font');
     const dyslexiaBtn = document.getElementById('a11y-dyslexia-toggle');
     if (dyslexiaBtn) dyslexiaBtn.classList.add('is-selected');
   }
 
-  if (localStorage.getItem('hafn_a11y_underline') === 'enabled') {
+  if (localStorage.getItem('bamdell_a11y_underline') === 'enabled' || localStorage.getItem('hafn_a11y_underline') === 'enabled') {
     document.documentElement.classList.add('underline-links');
     const underlineBtn = document.getElementById('a11y-underline-toggle');
     if (underlineBtn) underlineBtn.classList.add('is-selected');

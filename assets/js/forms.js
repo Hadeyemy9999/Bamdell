@@ -1,5 +1,5 @@
 /**
- * Hope Ability Foundation Nigeria - Form & Donation Engine
+ * Bam Dell Disabilities and Orphanage Home - Form & Donation Engine
  * Handles client-side accessible validation, SpamGuard protection,
  * Serverless SMTP endpoint integration, Paystack checkout simulation,
  * and copy-to-clipboard bank details.
@@ -84,7 +84,7 @@ function initDonationCalculator() {
       return;
     }
 
-    const confirmMsg = `Thank you for supporting Hope Ability Foundation Nigeria!\n\nDonation Summary:\nAmount: ₦${currentAmount.toLocaleString()}\nFrequency: ${currentFreq === 'monthly' ? 'Monthly Recurring' : 'One-Time'}\n\nYou will now be directed to Paystack secure checkout portal.`;
+    const confirmMsg = `Thank you for supporting Bam Dell Disabilities and Orphanage Home!\n\nDonation Summary:\nAmount: ₦${currentAmount.toLocaleString()}\nFrequency: ${currentFreq === 'monthly' ? 'Monthly Recurring' : 'One-Time'}\n\nYou will now be directed to Paystack secure checkout portal.`;
     
     if (confirm(confirmMsg)) {
       alert("Redirecting to Paystack secure payment gateway... (Demo Mode Active)");
