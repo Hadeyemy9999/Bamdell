@@ -82,10 +82,10 @@ function getHeaderFallback() {
     <header class="site-header">
       <div class="header-inner container">
         <a href="/index.html" class="site-logo">
-          <div class="site-logo-icon">HAF</div>
+          <div class="site-logo-icon">BDH</div>
           <div>
-            <div style="line-height: 1.1; font-size: 1.15rem; color: var(--primary);">Hope Ability</div>
-            <div style="font-size: 0.75rem; font-weight: 600; color: var(--dark-muted);">FOUNDATION NIGERIA</div>
+            <div style="line-height: 1.1; font-size: 1.15rem; font-weight: 800; color: var(--primary);">Bam Dell</div>
+            <div style="font-size: 0.72rem; font-weight: 700; color: var(--dark-muted);">DISABILITIES & ORPHANAGE HOME</div>
           </div>
         </a>
         <button class="mobile-nav-toggle" id="mobile-menu-btn" aria-expanded="false">☰</button>
@@ -93,8 +93,8 @@ function getHeaderFallback() {
           <ul class="nav-menu" id="nav-menu-list">
             <li><a href="/index.html" class="nav-link">Home</a></li>
             <li><a href="/about.html" class="nav-link">About Us</a></li>
-            <li><a href="/programs.html" class="nav-link">Programs</a></li>
-            <li><a href="/impact.html" class="nav-link">Impact</a></li>
+            <li><a href="/programs.html" class="nav-link">Who We Serve</a></li>
+            <li><a href="/impact.html" class="nav-link">Objectives & Needs</a></li>
             <li><a href="/get-involved.html" class="nav-link">Get Involved</a></li>
             <li><a href="/volunteer.html" class="nav-link">Volunteer</a></li>
             <li><a href="/news.html" class="nav-link">News</a></li>
@@ -112,7 +112,8 @@ function getFooterFallback() {
   return `
     <footer class="site-footer">
       <div class="container text-center">
-        <p>© 2026 Hope Ability Foundation Nigeria (CAC/IT/NO 148290)</p>
+        <p>© 2026 Bam Dell Disabilities and Orphanage Home — <i>Let Love Lead</i></p>
+        <p style="font-size: 0.85rem; color: #9CA3AF;">5B/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan | 07030700033</p>
         <div class="flex justify-center gap-3" style="margin-top: 1rem;">
           <a href="/safeguarding.html">Safeguarding</a> | 
           <a href="/privacy-policy.html">Privacy Policy</a> | 
