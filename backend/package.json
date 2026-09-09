@@ -1,0 +1,19 @@
+{
+  "name": "hopeability-backend",
+  "version": "1.0.0",
+  "description": "Backend for Bam Dell Disabilities and Orphanage Home form processing and SMTP email notifications",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "formidable": "^3.5.1",
+    "nodemailer": "^6.9.13"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}

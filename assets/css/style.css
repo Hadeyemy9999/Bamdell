@@ -810,6 +810,68 @@ img {
   margin-bottom: 1.75rem;
 }
 
+.hero-alt {
+  background: linear-gradient(135deg, #F0FDF4 0%, #FFFBF2 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-alt-title {
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #111827;
+  margin: 0.75rem 0 1rem;
+  text-transform: uppercase;
+}
+
+.founder-story-section {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.founder-story-section p {
+  margin-bottom: 1rem;
+}
+
+.testimonies-section {
+  background-color: var(--light-bg);
+}
+
+.photo-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.photo-placeholder-card {
+  padding: 1.25rem;
+}
+
+.photo-placeholder {
+  margin-top: 0.75rem;
+  min-height: 220px;
+  border-radius: var(--radius-sm);
+  border: 2px dashed var(--border-color);
+  background: linear-gradient(180deg, #F3F4F6 0%, #E5E7EB 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--dark-muted);
+}
+
+.photo-placeholder-after {
+  background: linear-gradient(180deg, #CCFBF1 0%, #F0FDF4 100%);
+  border-color: var(--primary);
+  color: var(--primary-hover);
+}
+
+@media (max-width: 768px) {
+  .photo-compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Scroll Reveal & Infinite Scroll Styles */
 .scroll-reveal {
   opacity: 0;

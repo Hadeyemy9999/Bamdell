@@ -191,7 +191,7 @@ function initServerlessForms() {
         maxFileSizeMB: 4
       };
 
-      let targetEndpoint = config.contactEndpoint;
+      let targetEndpoint = form.getAttribute('data-endpoint') || config.contactEndpoint;
       if (form.id === 'volunteer-form' || form.getAttribute('data-form-type') === 'volunteer') {
         targetEndpoint = config.volunteerEndpoint;
       }
@@ -240,7 +240,7 @@ function initServerlessForms() {
 
       } catch (networkErr) {
         console.error('[Form Submission Error]:', networkErr);
-        showFormAlert(form, 'Unable to connect to the submission server. Please check your internet connection or email us directly at info@hopeability.org.ng.', 'error');
+        showFormAlert(form, 'Unable to connect to the submission server. Please check your internet connection or email us directly at info@bamdellhome.org.', 'error');
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
