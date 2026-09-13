@@ -36,6 +36,11 @@
     <priority>0.95</priority>
   </url>
   <url>
+    <loc>https://bamdellhome.org/gallery.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://bamdellhome.org/news.html</loc>
     <lastmod>2026-08-23</lastmod>
     <priority>0.7</priority>

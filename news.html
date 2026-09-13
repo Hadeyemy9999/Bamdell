@@ -41,8 +41,18 @@
           
           <!-- Article 1 -->
           <article class="card" style="border-top: 4px solid var(--primary);">
-            <div style="background-color: var(--primary-light); height: 160px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 1rem;">
-              ♿ 🌟
+            <div class="hero-carousel" data-media-carousel data-interval="40000" data-height="160" data-slides='["https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260910_110409.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260911_093831.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/2317.jpg"]' aria-roledescription="carousel" aria-label="Therapy photos from Bam Dell Home" style="margin-bottom: 1rem;">
+              <div class="hero-carousel-viewport" style="position:relative;width:100%;height:160px;overflow:hidden;border-radius:8px;background:#fff;">
+                <img class="hero-carousel-current" src="https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260910_110409.jpg" alt="Physiotherapy at Bam Dell Home" style="position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);object-fit:cover;max-width:none;" />
+                <img class="hero-carousel-incoming" src="https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260911_093831.jpg" alt="" style="position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);object-fit:cover;max-width:none;transform:translateX(100%);" />
+                <button type="button" class="hero-carousel-btn hero-carousel-prev" aria-label="Previous photo">&#10094;</button>
+                <button type="button" class="hero-carousel-btn hero-carousel-next" aria-label="Next photo">&#10095;</button>
+              </div>
+              <div class="hero-carousel-dots" role="tablist" aria-label="Therapy photo slides">
+                <button type="button" class="is-active" aria-label="Show photo 1" aria-current="true"></button>
+                <button type="button" aria-label="Show photo 2"></button>
+                <button type="button" aria-label="Show photo 3"></button>
+              </div>
             </div>
             <div class="card-header">
               <span class="badge" style="background: var(--primary-light); color: var(--primary-hover);">Physiotherapy</span>
@@ -61,8 +71,20 @@
 
           <!-- Article 2 -->
           <article class="card" style="border-top: 4px solid var(--accent);">
-            <div style="background-color: #FEF3C7; height: 160px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 1rem;">
-              🎓 📚
+            <div class="hero-carousel" data-media-carousel data-interval="40000" data-height="160" data-slides='["https://res.cloudinary.com/im4j3tkd/image/upload/790.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/788.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/785.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/846.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/1016.jpg"]' aria-roledescription="carousel" aria-label="Classroom photos from Bam Dell Home" style="margin-bottom: 1rem;">
+              <div class="hero-carousel-viewport" style="position:relative;width:100%;height:160px;overflow:hidden;border-radius:8px;background:#fff;">
+                <img class="hero-carousel-current" src="https://res.cloudinary.com/im4j3tkd/image/upload/790.jpg" alt="Inclusive education at Bam Dell Home" style="position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);object-fit:cover;max-width:none;" />
+                <img class="hero-carousel-incoming" src="https://res.cloudinary.com/im4j3tkd/image/upload/788.jpg" alt="" style="position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);object-fit:cover;max-width:none;transform:translateX(100%);" />
+                <button type="button" class="hero-carousel-btn hero-carousel-prev" aria-label="Previous photo">&#10094;</button>
+                <button type="button" class="hero-carousel-btn hero-carousel-next" aria-label="Next photo">&#10095;</button>
+              </div>
+              <div class="hero-carousel-dots" role="tablist" aria-label="Classroom photo slides">
+                <button type="button" class="is-active" aria-label="Show photo 1" aria-current="true"></button>
+                <button type="button" aria-label="Show photo 2"></button>
+                <button type="button" aria-label="Show photo 3"></button>
+                <button type="button" aria-label="Show photo 4"></button>
+                <button type="button" aria-label="Show photo 5"></button>
+              </div>
             </div>
             <div class="card-header">
               <span class="badge badge-accent">Inclusive Education</span>
@@ -81,9 +103,7 @@
 
           <!-- Article 3 -->
           <article class="card" style="border-top: 4px solid var(--secondary);">
-            <div style="background-color: #F0FDF4; height: 160px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 1rem;">
-              📦 🍲
-            </div>
+            <img src="/assets/images/gallery-meals.svg" data-media="galleryMeals" alt="Food donation at Bam Dell Home" style="width:100%; height:160px; object-fit:cover; border-radius: var(--radius-sm); margin-bottom: 1rem;" />
             <div class="card-header">
               <span class="badge" style="background: #DCFCE7; color: #15803D;">Food & Nutrition</span>
               <span style="font-size: 0.85rem; color: var(--dark-muted); float: right;">Community Giving</span>
@@ -96,6 +116,68 @@
             </div>
             <div class="card-footer" style="margin-top: 1rem;">
               <a href="/news-single.html" class="btn btn-outline btn-sm">Read Full Story &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card" style="border-top: 4px solid var(--primary);">
+            <img src="/assets/images/gallery-play.svg" data-media="galleryPlay" alt="Children at play at Bam Dell Home" style="width:100%; height:160px; object-fit:cover; border-radius: var(--radius-sm); margin-bottom: 1rem;" />
+            <div class="card-header">
+              <span class="badge" style="background: var(--primary-light); color: var(--primary-hover);">Joy &amp; Play</span>
+            </div>
+            <div class="card-body">
+              <h2 style="font-size: 1.2rem; margin: 0.5rem 0;">Playground Joy: Children Living Beyond Limit</h2>
+              <p style="font-size: 0.9rem; color: var(--dark-muted); line-height: 1.6;">
+                Outdoor time, laughter, and belonging continue to shape daily life at Bam Dell Home.
+              </p>
+            </div>
+            <div class="card-footer" style="margin-top: 1rem;">
+              <a href="/gallery.html" class="btn btn-outline btn-sm">View Gallery &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card" style="border-top: 4px solid var(--accent);">
+            <div class="hero-carousel" data-media-carousel data-interval="40000" data-height="160" data-slides='["https://res.cloudinary.com/im4j3tkd/image/upload/790.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/788.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/785.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/846.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/1016.jpg"]' aria-roledescription="carousel" aria-label="Classroom photos from Bam Dell Home" style="margin-bottom: 1rem;">
+              <div class="hero-carousel-viewport" style="position:relative;width:100%;height:160px;overflow:hidden;border-radius:8px;background:#fff;">
+                <img class="hero-carousel-current" src="https://res.cloudinary.com/im4j3tkd/image/upload/790.jpg" alt="Inclusive classroom at Bam Dell Home" style="position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);object-fit:cover;max-width:none;" />
+                <img class="hero-carousel-incoming" src="https://res.cloudinary.com/im4j3tkd/image/upload/788.jpg" alt="" style="position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);object-fit:cover;max-width:none;transform:translateX(100%);" />
+                <button type="button" class="hero-carousel-btn hero-carousel-prev" aria-label="Previous photo">&#10094;</button>
+                <button type="button" class="hero-carousel-btn hero-carousel-next" aria-label="Next photo">&#10095;</button>
+              </div>
+              <div class="hero-carousel-dots" role="tablist" aria-label="Classroom photo slides">
+                <button type="button" class="is-active" aria-label="Show photo 1" aria-current="true"></button>
+                <button type="button" aria-label="Show photo 2"></button>
+                <button type="button" aria-label="Show photo 3"></button>
+                <button type="button" aria-label="Show photo 4"></button>
+                <button type="button" aria-label="Show photo 5"></button>
+              </div>
+            </div>
+            <div class="card-header">
+              <span class="badge badge-accent">Classroom</span>
+            </div>
+            <div class="card-body">
+              <h2 style="font-size: 1.2rem; margin: 0.5rem 0;">Learning Together in Our Inclusive Classroom</h2>
+              <p style="font-size: 0.9rem; color: var(--dark-muted); line-height: 1.6;">
+                Braille, scholarships, and patient teaching help every child stay in school.
+              </p>
+            </div>
+            <div class="card-footer" style="margin-top: 1rem;">
+              <a href="/gallery.html" class="btn btn-outline btn-sm">View Gallery &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card" style="border-top: 4px solid var(--secondary);">
+            <img src="/assets/images/kingdavid-after.svg" data-media="kingdavidAfter" alt="Kingdavid after receiving care" style="width:100%; height:160px; object-fit:cover; border-radius: var(--radius-sm); margin-bottom: 1rem;" />
+            <div class="card-header">
+              <span class="badge" style="background: #DCFCE7; color: #15803D;">Testimony</span>
+            </div>
+            <div class="card-body">
+              <h2 style="font-size: 1.2rem; margin: 0.5rem 0;">Kingdavid Walks: A Testimony of Love That Leads</h2>
+              <p style="font-size: 0.9rem; color: var(--dark-muted); line-height: 1.6;">
+                From limited mobility to walking, toilet independence, and a shining body.
+              </p>
+            </div>
+            <div class="card-footer" style="margin-top: 1rem;">
+              <a href="/index.html#testimonies-title" class="btn btn-outline btn-sm">Read Testimony &rarr;</a>
             </div>
           </article>
 
@@ -113,6 +195,7 @@
   <script src="/assets/js/form-config.v1.js"></script>
   <script src="/assets/js/spam-guard.js"></script>
   <script src="/assets/js/forms.js"></script>
+  <script src="/assets/js/media-config.js"></script>
   <script src="/assets/js/main.js"></script>
 </body>
 </html>

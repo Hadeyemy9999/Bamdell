@@ -5,9 +5,14 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initSiteMarquee();
+  applyRemoteMedia();
+  initHeroCarousel();
   initLazyImages();
   initScrollReveal();
   initInfiniteScroll();
+  initFeaturedVideo();
+  initMediaLightbox();
   initCookieBanner();
   initStatCounters();
   initAccordions();
@@ -18,9 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function initLazyImages() {
   const images = document.querySelectorAll('img');
   images.forEach(img => {
-    if (!img.hasAttribute('loading')) {
-      img.setAttribute('loading', 'lazy');
-    }
+    if (img.hasAttribute('loading')) return;
+    const isHeroSlide = img.closest('.hero-slide');
+    const isActiveHero = img.closest('.hero-slide.is-active');
+    img.setAttribute('loading', isActiveHero ? 'eager' : (isHeroSlide ? 'lazy' : 'lazy'));
+    if (isActiveHero) img.setAttribute('fetchpriority', 'high');
   });
 }
 
@@ -31,7 +38,7 @@ function initScrollReveal() {
     return;
   }
 
-  const revealTargets = document.querySelectorAll('.section, .card, .stat-box, article, .hero');
+  const revealTargets = document.querySelectorAll('.section, .card, .stat-box, article');
   if (!revealTargets.length) return;
 
   revealTargets.forEach(target => {
@@ -56,20 +63,67 @@ function initScrollReveal() {
   revealTargets.forEach(target => observer.observe(target));
 }
 
+function initSiteMarquee() {
+  if (document.querySelector('.media-marquee-section')) return;
+  const main = document.getElementById('main-content');
+  if (!main) return;
+
+  const section = document.createElement('section');
+  section.className = 'media-marquee-section';
+  section.setAttribute('aria-label', 'Moments from Bam Dell Home');
+  section.innerHTML = `
+    <div class="media-marquee">
+      <div class="media-marquee-track">
+        <div class="media-marquee-item"><img src="/assets/images/gallery-care.svg" data-media="galleryCare" alt="Daily care at Bam Dell Home" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-meals.svg" data-media="galleryMeals" alt="Shared meals at Bam Dell Home" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-therapy.svg" data-media="galleryTherapy" alt="Physiotherapy at Bam Dell Home" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-classroom.svg" data-media="galleryClassroom" alt="Inclusive classroom at Bam Dell Home" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-play.svg" data-media="galleryPlay" alt="Children playing at Bam Dell Home" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-home.svg" data-media="galleryHome" alt="Bam Dell Home in Ibadan" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-visit.svg" data-media="galleryVisit" alt="Partners visiting Bam Dell Home" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-worship.svg" data-media="galleryWorship" alt="Spiritual care at Bam Dell Home" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-care.svg" data-media="galleryCare" alt="" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-meals.svg" data-media="galleryMeals" alt="" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-therapy.svg" data-media="galleryTherapy" alt="" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-classroom.svg" data-media="galleryClassroom" alt="" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-play.svg" data-media="galleryPlay" alt="" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-home.svg" data-media="galleryHome" alt="" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-visit.svg" data-media="galleryVisit" alt="" /></div>
+        <div class="media-marquee-item"><img src="/assets/images/gallery-worship.svg" data-media="galleryWorship" alt="" /></div>
+      </div>
+    </div>
+  `;
+
+  const first = main.firstElementChild;
+  if (first && (first.classList.contains('hero') || first.classList.contains('section'))) {
+    first.after(section);
+  } else {
+    main.prepend(section);
+  }
+}
+
 /* Infinite Scroll Engine for Fast Page Loading & Dynamic Content Streams */
 function initInfiniteScroll() {
-  // Only paginate containers explicitly annotated with data-infinite-scroll="true"
-  const containers = document.querySelectorAll('[data-infinite-scroll="true"]');
+  const marked = Array.from(document.querySelectorAll('[data-infinite-scroll="true"]'));
+  const autoGrids = Array.from(document.querySelectorAll('.grid, .serve-group-grid, .needs-grid, .media-gallery-grid'))
+    .filter(el => !el.hasAttribute('data-infinite-scroll'));
+  const containers = marked.concat(autoGrids);
+
   if (!containers.length) return;
 
   containers.forEach(container => {
-    const items = Array.from(container.children).filter(child => 
-      child.classList.contains('card') || child.tagName === 'ARTICLE'
+    const items = Array.from(container.children).filter(child =>
+      child.classList.contains('card') ||
+      child.classList.contains('gallery-card') ||
+      child.classList.contains('serve-group-item') ||
+      child.classList.contains('need-item-card') ||
+      child.hasAttribute('data-infinite-item') ||
+      child.tagName === 'ARTICLE'
     );
 
-    if (items.length <= 4) return;
+    if (items.length < 5) return;
 
-    const BATCH_SIZE = 4;
+    const BATCH_SIZE = container.classList.contains('media-gallery-grid') ? 6 : 4;
     let currentlyShown = BATCH_SIZE;
 
     // Initially hide items beyond BATCH_SIZE
@@ -333,4 +387,285 @@ function updateCurrentYear() {
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+}
+
+function getMediaConfig() {
+  return window.BAMDELL_MEDIA || { images: {}, videos: {} };
+}
+
+function optimizeCloudinaryUrl(url) {
+  if (!url || url.indexOf('res.cloudinary.com') === -1) return url;
+  if (url.indexOf('/upload/f_auto') !== -1) return url;
+  return url.replace('/upload/', '/upload/f_auto,q_auto,c_fill,w_1200/');
+}
+
+function vimeoEmbedUrl(value) {
+  if (!value) return '';
+  const match = String(value).match(/(?:vimeo\.com\/(?:video\/)?|player\.vimeo\.com\/video\/)(\d+)/);
+  const id = match ? match[1] : (/^\d+$/.test(String(value).trim()) ? String(value).trim() : '');
+  if (!id) return '';
+  return 'https://player.vimeo.com/video/' + id + '?title=0&byline=0&portrait=0&dnt=1';
+}
+
+function applyRemoteMedia() {
+  const media = getMediaConfig();
+  const images = media.images || {};
+  const videos = media.videos || {};
+  const counters = {};
+
+  document.querySelectorAll('[data-media]').forEach(img => {
+    const key = img.getAttribute('data-media');
+    const slides = images[key + 'Slides'];
+    const value = images[key];
+    let remote = '';
+    if (Array.isArray(slides) && slides.length) {
+      const i = counters[key] || 0;
+      remote = optimizeCloudinaryUrl(slides[i % slides.length]);
+      counters[key] = i + 1;
+    } else if (typeof value === 'string') {
+      remote = optimizeCloudinaryUrl(value);
+    }
+    if (!remote) return;
+    img.setAttribute('src', remote);
+    const wrap = img.closest('[data-lightbox]');
+    if (wrap) wrap.setAttribute('data-lightbox', remote);
+  });
+
+  document.querySelectorAll('[data-vimeo]').forEach(stage => {
+    const key = stage.getAttribute('data-vimeo');
+    const embed = vimeoEmbedUrl(videos[key]);
+    if (!embed) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = embed;
+    iframe.title = 'Bam Dell Home video';
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('loading', 'lazy');
+    iframe.className = 'vimeo-embed';
+    stage.innerHTML = '';
+    stage.appendChild(iframe);
+    stage.classList.add('has-vimeo');
+  });
+}
+
+function initHeroCarousel() {
+  const carousels = document.querySelectorAll('[data-hero-carousel], [data-media-carousel]');
+  carousels.forEach(carousel => {
+    let urls = [];
+    try {
+      urls = JSON.parse(carousel.getAttribute('data-slides') || '[]');
+    } catch (err) {
+      urls = [];
+    }
+    if (!urls.length) {
+      const mediaImages = (getMediaConfig().images || {});
+      const fromConfig = mediaImages.galleryVisitSlides || mediaImages.galleryVisit;
+      urls = Array.isArray(fromConfig) ? fromConfig : (fromConfig ? [fromConfig] : []);
+    }
+    const viewport = carousel.querySelector('.hero-carousel-viewport');
+    const currentImg = carousel.querySelector('.hero-carousel-current');
+    const incomingImg = carousel.querySelector('.hero-carousel-incoming');
+    const dots = Array.from(carousel.querySelectorAll('.hero-carousel-dots button'));
+    const prevBtn = carousel.querySelector('.hero-carousel-prev');
+    const nextBtn = carousel.querySelector('.hero-carousel-next');
+    if (!viewport || !currentImg || !incomingImg || urls.length < 2) return;
+
+    const height = parseInt(carousel.getAttribute('data-height'), 10) || 420;
+    viewport.setAttribute('style', 'position:relative;width:100%;height:' + height + 'px;overflow:hidden;border-radius:16px;background:#ffffff;box-shadow:0 12px 30px rgba(0,0,0,0.12);');
+    const layerStyle = 'position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);max-width:none;object-fit:cover;object-position:center;display:block;margin:0;padding:0;border:0;';
+    currentImg.setAttribute('style', layerStyle + 'z-index:1;transform:translateX(0);');
+    incomingImg.setAttribute('style', layerStyle + 'z-index:2;transform:translateX(100%);');
+
+    let index = 0;
+    let animating = false;
+    let timer = null;
+    const intervalMs = parseInt(carousel.getAttribute('data-interval'), 10) || 40000;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const updateDots = () => {
+      dots.forEach((dot, i) => {
+        const active = i === index;
+        dot.classList.toggle('is-active', active);
+        if (active) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
+    };
+
+    const goTo = (next, dir) => {
+      if (animating) return;
+      const target = (next + urls.length) % urls.length;
+      if (target === index) return;
+      animating = true;
+      const direction = dir || (target > index || (index === urls.length - 1 && target === 0) ? 1 : -1);
+
+      incomingImg.src = urls[target];
+      incomingImg.style.transition = 'none';
+      incomingImg.style.transform = 'translateX(' + (direction * 100) + '%)';
+      currentImg.style.transition = 'none';
+      currentImg.style.transform = 'translateX(0)';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          incomingImg.style.transition = 'transform 0.8s ease-in-out';
+          currentImg.style.transition = 'transform 0.8s ease-in-out';
+          incomingImg.style.transform = 'translateX(0)';
+          currentImg.style.transform = 'translateX(' + (direction * -100) + '%)';
+        });
+      });
+
+      window.setTimeout(() => {
+        currentImg.src = urls[target];
+        currentImg.alt = incomingImg.alt || currentImg.alt;
+        currentImg.style.transition = 'none';
+        currentImg.style.transform = 'translateX(0)';
+        incomingImg.style.transition = 'none';
+        incomingImg.style.transform = 'translateX(100%)';
+        index = target;
+        updateDots();
+        animating = false;
+      }, 820);
+    };
+
+    const startTimer = () => {
+      if (reduceMotion) return;
+      stopTimer();
+      timer = window.setInterval(() => goTo(index + 1, 1), intervalMs);
+    };
+
+    const stopTimer = () => {
+      if (timer) window.clearInterval(timer);
+      timer = null;
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goTo(i, i > index ? 1 : -1);
+        startTimer();
+      });
+    });
+
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+      goTo(index - 1, -1);
+      startTimer();
+    });
+
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+      goTo(index + 1, 1);
+      startTimer();
+    });
+
+    carousel.addEventListener('mouseenter', stopTimer);
+    carousel.addEventListener('mouseleave', startTimer);
+
+    updateDots();
+    startTimer();
+  });
+}
+
+function initFeaturedVideo() {
+  const players = document.querySelectorAll('[data-video-player]');
+  players.forEach(player => {
+    const stageImg = player.querySelector('img');
+    const playBtn = player.querySelector('[data-video-play]');
+    const progress = player.querySelector('[data-video-progress] span');
+    let frames = [];
+    try {
+      frames = JSON.parse(player.getAttribute('data-frames') || '[]');
+    } catch (err) {
+      frames = [];
+    }
+    if (!stageImg || !playBtn || frames.length < 2) return;
+
+    let timer = null;
+    let index = 0;
+    const poster = stageImg.getAttribute('src');
+
+    const stopPlayback = () => {
+      if (timer) clearInterval(timer);
+      timer = null;
+      player.classList.remove('is-playing');
+      playBtn.setAttribute('aria-pressed', 'false');
+      playBtn.textContent = 'Play';
+      if (progress) progress.style.width = '0%';
+    };
+
+    const startPlayback = () => {
+      player.classList.add('is-playing');
+      playBtn.setAttribute('aria-pressed', 'true');
+      playBtn.textContent = 'Pause';
+      index = 0;
+      stageImg.setAttribute('src', frames[0]);
+      const tickMs = 1400;
+      timer = setInterval(() => {
+        index += 1;
+        if (index >= frames.length) {
+          stopPlayback();
+          stageImg.setAttribute('src', poster);
+          return;
+        }
+        stageImg.setAttribute('src', frames[index]);
+        if (progress) {
+          progress.style.width = ((index + 1) / frames.length) * 100 + '%';
+        }
+      }, tickMs);
+    };
+
+    playBtn.addEventListener('click', () => {
+      if (timer) {
+        stopPlayback();
+        stageImg.setAttribute('src', poster);
+      } else {
+        startPlayback();
+      }
+    });
+  });
+}
+
+function initMediaLightbox() {
+  const triggers = document.querySelectorAll('[data-lightbox]');
+  if (!triggers.length) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'media-lightbox';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Media preview');
+  overlay.innerHTML = `
+    <div class="media-lightbox-inner">
+      <button type="button" class="media-lightbox-close" data-lightbox-close>Close</button>
+      <img alt="" />
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const preview = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('[data-lightbox-close]');
+
+  const closeLightbox = () => {
+    overlay.classList.remove('is-open');
+    preview.setAttribute('src', '');
+    preview.setAttribute('alt', '');
+  };
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const src = trigger.getAttribute('data-lightbox') || (trigger.querySelector('img') ? trigger.querySelector('img').getAttribute('src') : '');
+      const alt = trigger.getAttribute('data-lightbox-alt') || (trigger.querySelector('img') ? trigger.querySelector('img').getAttribute('alt') : '');
+      if (!src) return;
+      preview.setAttribute('src', src);
+      preview.setAttribute('alt', alt || '');
+      overlay.classList.add('is-open');
+      closeBtn.focus();
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) closeLightbox();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && overlay.classList.contains('is-open')) {
+      closeLightbox();
+    }
+  });
 }
