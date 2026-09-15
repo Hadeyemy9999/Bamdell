@@ -471,14 +471,16 @@ function initHeroCarousel() {
     if (!viewport || !currentImg || !incomingImg || urls.length < 2) return;
 
     const height = parseInt(carousel.getAttribute('data-height'), 10) || 420;
-    viewport.setAttribute('style', 'position:relative;width:100%;height:' + height + 'px;overflow:hidden;border-radius:16px;background:#ffffff;box-shadow:0 12px 30px rgba(0,0,0,0.12);');
-    const layerStyle = 'position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);max-width:none;object-fit:cover;object-position:center;display:block;margin:0;padding:0;border:0;';
+    viewport.setAttribute('style', 'position:relative;width:100%;height:' + height + 'px;overflow:hidden;border-radius:16px;background:#0B0F0B;box-shadow:0 12px 30px rgba(0,0,0,0.12);');
+    const layerStyle = 'position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);max-width:none;object-fit:cover;object-position:center;display:block;margin:0;padding:0;border:2px solid #39FF14;box-shadow:0 0 6px rgba(57,255,20,0.95),0 0 14px rgba(57,255,20,0.6);backface-visibility:hidden;';
     currentImg.setAttribute('style', layerStyle + 'z-index:1;transform:translateX(0);');
     incomingImg.setAttribute('style', layerStyle + 'z-index:2;transform:translateX(100%);');
 
     let index = 0;
     let animating = false;
     let timer = null;
+    let effectIndex = 0;
+    const effects = ['door', 'flip'];
     const intervalMs = parseInt(carousel.getAttribute('data-interval'), 10) || 40000;
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -491,39 +493,86 @@ function initHeroCarousel() {
       });
     };
 
+    const resetLayers = () => {
+      viewport.style.perspective = 'none';
+      currentImg.style.transition = 'none';
+      currentImg.style.transform = 'translateX(0)';
+      currentImg.style.transformOrigin = 'center center';
+      currentImg.style.clipPath = 'none';
+      currentImg.style.opacity = '1';
+      incomingImg.style.transition = 'none';
+      incomingImg.style.transform = 'translateX(100%)';
+      incomingImg.style.transformOrigin = 'center center';
+      incomingImg.style.clipPath = 'none';
+      incomingImg.style.opacity = '1';
+      incomingImg.style.zIndex = '2';
+    };
+
     const goTo = (next, dir) => {
       if (animating) return;
       const target = (next + urls.length) % urls.length;
       if (target === index) return;
       animating = true;
       const direction = dir || (target > index || (index === urls.length - 1 && target === 0) ? 1 : -1);
+      const effect = reduceMotion ? 'instant' : effects[effectIndex % effects.length];
+      effectIndex++;
 
       incomingImg.src = urls[target];
-      incomingImg.style.transition = 'none';
-      incomingImg.style.transform = 'translateX(' + (direction * 100) + '%)';
-      currentImg.style.transition = 'none';
-      currentImg.style.transform = 'translateX(0)';
+      incomingImg.alt = '';
 
-      requestAnimationFrame(() => {
+      if (effect === 'instant') {
+        currentImg.src = urls[target];
+        index = target;
+        updateDots();
+        animating = false;
+        return;
+      }
+
+      if (effect === 'flip') {
+        viewport.style.perspective = '1600px';
+        currentImg.style.transition = 'none';
+        currentImg.style.transform = 'translateX(0)';
+        currentImg.style.opacity = '1';
+        incomingImg.style.transition = 'none';
+        incomingImg.style.transformOrigin = direction === 1 ? 'left center' : 'right center';
+        incomingImg.style.transform = 'rotateY(' + (direction === 1 ? -100 : 100) + 'deg)';
+        incomingImg.style.opacity = '1';
+        incomingImg.style.zIndex = '3';
+
         requestAnimationFrame(() => {
-          incomingImg.style.transition = 'transform 0.8s ease-in-out';
-          currentImg.style.transition = 'transform 0.8s ease-in-out';
-          incomingImg.style.transform = 'translateX(0)';
-          currentImg.style.transform = 'translateX(' + (direction * -100) + '%)';
+          requestAnimationFrame(() => {
+            incomingImg.style.transition = 'transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1)';
+            incomingImg.style.transform = 'rotateY(0deg)';
+          });
         });
-      });
+      } else {
+        viewport.style.perspective = 'none';
+        currentImg.style.transition = 'none';
+        currentImg.style.transform = 'translateX(0)';
+        currentImg.style.opacity = '1';
+        incomingImg.style.transition = 'none';
+        incomingImg.style.transform = 'translateX(0)';
+        incomingImg.style.transformOrigin = 'center center';
+        incomingImg.style.opacity = '1';
+        incomingImg.style.zIndex = '3';
+        incomingImg.style.clipPath = 'inset(0 50% 0 50%)';
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            incomingImg.style.transition = 'clip-path 0.9s cubic-bezier(0.22, 0.61, 0.36, 1)';
+            incomingImg.style.clipPath = 'inset(0 0 0 0)';
+          });
+        });
+      }
 
       window.setTimeout(() => {
         currentImg.src = urls[target];
         currentImg.alt = incomingImg.alt || currentImg.alt;
-        currentImg.style.transition = 'none';
-        currentImg.style.transform = 'translateX(0)';
-        incomingImg.style.transition = 'none';
-        incomingImg.style.transform = 'translateX(100%)';
+        resetLayers();
         index = target;
         updateDots();
         animating = false;
-      }, 820);
+      }, 940);
     };
 
     const startTimer = () => {
