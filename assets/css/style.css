@@ -155,19 +155,44 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  border: 2px solid var(--neon-green);
-  box-shadow: var(--neon-glow-sm);
+  border: 4px solid var(--neon-green);
+  box-shadow: var(--neon-glow-lg);
   background-color: #0B0F0B;
+  padding: clamp(4px, 1vw, 10px);
+  border-radius: var(--radius-sm);
+}
+
+/* Keep images comfortably inset inside cards and content blocks */
+.card img,
+.gallery-card img,
+.founder-photo,
+.photo-placeholder img {
+  margin-bottom: 0.5rem;
 }
 
 /* Container & Layout Utilities */
 .container {
   width: 100%;
-  max-width: var(--container-max);
+  max-width: min(var(--container-max), calc(100vw - 2 * clamp(1rem, 4vw, 2rem)));
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(1rem, 4vw, 1.5rem);
-  padding-right: clamp(1rem, 4vw, 1.5rem);
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
+}
+
+/* Page breathing room so content never sits flush to the viewport edges */
+#main-content {
+  padding-left: clamp(0.75rem, 2.5vw, 2rem);
+  padding-right: clamp(0.75rem, 2.5vw, 2rem);
+  padding-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+@media (min-width: 1400px) {
+  #main-content {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .section {
@@ -863,9 +888,11 @@ img {
   object-fit: cover;
   object-position: center;
   display: block;
-  border: 2px solid var(--neon-green);
-  box-shadow: var(--neon-glow-sm);
+  border: 4px solid var(--neon-green);
+  box-shadow: var(--neon-glow-lg);
   backface-visibility: hidden;
+  padding: clamp(4px, 1vw, 10px);
+  border-radius: var(--radius-sm);
 }
 
 .hero-carousel-current {
