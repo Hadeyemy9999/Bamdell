@@ -471,8 +471,8 @@ function initHeroCarousel() {
     if (!viewport || !currentImg || !incomingImg || urls.length < 2) return;
 
     const height = parseInt(carousel.getAttribute('data-height'), 10) || 420;
-    viewport.setAttribute('style', 'position:relative;width:100%;height:' + height + 'px;overflow:hidden;border-radius:16px;background:#0B0F0B;box-shadow:0 12px 30px rgba(0,0,0,0.12);');
-    const layerStyle = 'position:absolute;top:4px;left:4px;width:calc(100% - 8px);height:calc(100% - 8px);max-width:none;object-fit:cover;object-position:center;display:block;margin:0;padding:clamp(4px,1vw,10px);border:4px solid #39FF14;border-radius:8px;box-shadow:0 0 10px rgba(57,255,20,1),0 0 22px rgba(57,255,20,0.65),0 0 40px rgba(57,255,20,0.35);backface-visibility:hidden;';
+    viewport.setAttribute('style', 'position:relative;width:100%;height:' + height + 'px;overflow:hidden;border-radius:16px;background:#FFFBF2;box-shadow:0 12px 30px rgba(0,0,0,0.12);');
+    const layerStyle = 'position:absolute;top:8px;left:8px;width:calc(100% - 16px);height:calc(100% - 16px);max-width:none;object-fit:cover;object-position:center;display:block;margin:0;padding:0;border:4px solid #39FF14;border-radius:8px;box-shadow:0 0 10px rgba(57,255,20,1),0 0 22px rgba(57,255,20,0.65),0 0 40px rgba(57,255,20,0.35);backface-visibility:hidden;';
     currentImg.setAttribute('style', layerStyle + 'z-index:1;transform:translateX(0);');
     incomingImg.setAttribute('style', layerStyle + 'z-index:2;transform:translateX(100%);');
 

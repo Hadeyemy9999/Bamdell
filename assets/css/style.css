@@ -152,14 +152,23 @@ a:hover {
 }
 
 img {
-  max-width: 100%;
+  max-width: calc(100% - 2 * clamp(4px, 1vw, 10px));
   height: auto;
   display: block;
   border: 4px solid var(--neon-green);
   box-shadow: var(--neon-glow-lg);
-  background-color: #0B0F0B;
-  padding: clamp(4px, 1vw, 10px);
+  background-color: transparent;
+  margin: clamp(4px, 1vw, 10px) auto;
   border-radius: var(--radius-sm);
+}
+
+/* Full-bleed media fills its frame; the frame supplies the outer gap */
+.media-marquee-item img,
+.video-stage img,
+.vimeo-embed,
+.hero-carousel-viewport > img {
+  max-width: none;
+  margin: 0;
 }
 
 /* Keep images comfortably inset inside cards and content blocks */
@@ -872,7 +881,7 @@ img {
   min-height: 280px;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: #ffffff;
+  background: var(--light-bg);
   box-shadow: var(--shadow-lg);
 }
 
@@ -891,7 +900,6 @@ img {
   border: 4px solid var(--neon-green);
   box-shadow: var(--neon-glow-lg);
   backface-visibility: hidden;
-  padding: clamp(4px, 1vw, 10px);
   border-radius: var(--radius-sm);
 }
 
