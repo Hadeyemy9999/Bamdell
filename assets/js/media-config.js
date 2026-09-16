@@ -10,8 +10,8 @@ window.BAMDELL_MEDIA = {
       'https://res.cloudinary.com/im4j3tkd/image/upload/1000411633.jpg'
     ],
     founder: 'https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260728_165929.jpg',
-    kingdavidBefore: 'https://res.cloudinary.com/im4j3tkd/image/upload/1000414313.jpg',
-    kingdavidAfter: 'https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260807_101353_2.jpg',
+    kingdavidBefore: 'https://res.cloudinary.com/im4j3tkd/image/upload/IMG-20260915-WA0040_1.webp',
+    kingdavidAfter: 'https://res.cloudinary.com/im4j3tkd/image/upload/IMG-20260915-WA0041_1.webp',
     galleryCare: 'https://res.cloudinary.com/im4j3tkd/image/upload/1000411633.jpg',
     galleryCareSlides: [
       'https://res.cloudinary.com/im4j3tkd/image/upload/1000411633.jpg',
