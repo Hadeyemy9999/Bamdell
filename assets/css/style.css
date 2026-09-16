@@ -152,23 +152,29 @@ a:hover {
 }
 
 img {
-  max-width: calc(100% - 2 * clamp(4px, 1vw, 10px));
+  box-sizing: border-box;
   height: auto;
   display: block;
-  border: 4px solid var(--neon-green);
-  box-shadow: var(--neon-glow-lg);
-  background-color: transparent;
+  max-width: min(calc(100% - 2 * clamp(4px, 1vw, 10px)), 600px);
   margin: clamp(4px, 1vw, 10px) auto;
+  padding: clamp(6px, 1.5vw, 12px);
+  background-color: var(--light-bg);
+  border: 4px solid var(--light-bg);
   border-radius: var(--radius-sm);
+  box-shadow: 0 0 0 2px var(--neon-green), var(--neon-glow-lg);
 }
 
-/* Full-bleed media fills its frame; the frame supplies the outer gap */
+/* Full-bleed media fills its frame instead of shrinking to the compact photo size */
 .media-marquee-item img,
 .video-stage img,
 .vimeo-embed,
 .hero-carousel-viewport > img {
   max-width: none;
   margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border-color: var(--neon-green);
+  box-shadow: var(--neon-glow-lg);
 }
 
 /* Keep images comfortably inset inside cards and content blocks */
