@@ -1123,7 +1123,8 @@ img {
   display: none;
 }
 
-.video-stage.has-vimeo {
+.video-stage.has-vimeo,
+.video-stage.has-embed {
   min-height: 0;
   aspect-ratio: 16 / 9;
 }

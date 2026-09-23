@@ -33,7 +33,7 @@ window.BAMDELL_MEDIA = {
       'https://res.cloudinary.com/im4j3tkd/image/upload/846.jpg',
       'https://res.cloudinary.com/im4j3tkd/image/upload/1016.jpg'
     ],
-    galleryPlay: '',
+    galleryPlay: 'https://res.cloudinary.com/im4j3tkd/image/upload/2545.jpg',
     galleryHome: 'https://res.cloudinary.com/im4j3tkd/image/upload/2317.jpg',
     galleryVisit: 'https://res.cloudinary.com/im4j3tkd/image/upload/3450.jpg',
     galleryVisitSlides: [
@@ -43,18 +43,18 @@ window.BAMDELL_MEDIA = {
       'https://res.cloudinary.com/im4j3tkd/image/upload/3593.jpg',
       'https://res.cloudinary.com/im4j3tkd/image/upload/3599.jpg'
     ],
-    galleryWorship: '',
-    galleryMobility: '',
-    galleryStory: '',
-    videoPosterLife: ''
+    galleryWorship: 'https://res.cloudinary.com/im4j3tkd/image/upload/778.jpg',
+    galleryMobility: 'https://res.cloudinary.com/im4j3tkd/image/upload/1009.jpg',
+    galleryStory: 'https://res.cloudinary.com/im4j3tkd/image/upload/3599.jpg',
+    videoPosterLife: 'https://res.cloudinary.com/im4j3tkd/image/upload/1197.png'
   },
   videos: {
-    lifeAtHome: '',
-    therapy: '',
+    lifeAtHome: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=Video_Editor_20260919_19_47_35',
+    therapy: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=258',
     learning: '',
     meals: '',
-    play: '',
-    visit: '',
+    play: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=128',
+    visit: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=128',
     homeTour: '',
     worship: ''
   }
