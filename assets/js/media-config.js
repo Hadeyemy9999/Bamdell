@@ -6,7 +6,8 @@ window.BAMDELL_MEDIA = {
       'https://res.cloudinary.com/im4j3tkd/image/upload/1000414309.jpg',
       'https://res.cloudinary.com/im4j3tkd/image/upload/3589.jpg',
       'https://res.cloudinary.com/im4j3tkd/image/upload/3427.jpg',
-      'https://res.cloudinary.com/im4j3tkd/image/upload/3450.jpg',
+      'https://res.cloudinary.com/ngts2ryy/image/upload/v1790504322/IMG_20260927_111609_518.jpg',
+      'https://res.cloudinary.com/ngts2ryy/image/upload/v1790503742/IMG_20260927_110329_796.jpg',
       'https://res.cloudinary.com/im4j3tkd/image/upload/1000411633.jpg'
     ],
     founder: 'https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260728_165929.jpg',
