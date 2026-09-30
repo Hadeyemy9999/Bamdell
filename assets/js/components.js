@@ -138,7 +138,7 @@ function getHeaderFallback() {
     <header class="site-header">
       <div class="header-inner container">
         <a href="/index.html" class="site-logo" aria-label="Bam Dell Disabilities and Orphanage Home">
-          <div class="site-logo-icon">BDH</div>
+          <img class="site-logo-icon" src="https://res.cloudinary.com/ngts2ryy/image/upload/v1790504318/IMG_20260927_111654_662.jpg" alt="" />
           <div>
             <div style="line-height: 1.1; font-size: 1.1rem; font-weight: 800; color: var(--primary);">Bam Dell</div>
             <div style="font-size: 0.7rem; font-weight: 700; color: var(--dark-muted); letter-spacing: 0.04em;">DISABILITIES & ORPHANAGE HOME</div>

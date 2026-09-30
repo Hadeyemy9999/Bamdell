@@ -472,14 +472,15 @@ img {
 .site-logo-icon {
   width: 42px;
   height: 42px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #FFFFFF;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: 900;
+  background: none;
+  color: inherit;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  display: block;
+  object-fit: contain;
+  object-position: center;
   flex-shrink: 0;
 }
 
@@ -1597,7 +1598,6 @@ img {
   .site-logo-icon {
     width: 36px;
     height: 36px;
-    font-size: 0.88rem;
   }
 }
 
