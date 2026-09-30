@@ -45,7 +45,7 @@
   --shadow-lg: 0 12px 30px rgba(0,0,0,0.12);
   
   --transition-fast: 0.2s ease;
-  --header-height: 68px;
+  --header-height: 84px;
 }
 
 /* Base Reset & Accessibility Standards */
@@ -470,8 +470,8 @@ img {
 }
 
 .site-logo-icon {
-  width: 42px;
-  height: 42px;
+  width: 72px;
+  height: 72px;
   background: none;
   color: inherit;
   border: none;
@@ -482,6 +482,28 @@ img {
   object-fit: contain;
   object-position: center;
   flex-shrink: 0;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-logo {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  display: block;
+  object-fit: contain;
+  object-position: center;
 }
 
 .nav-menu {
@@ -972,6 +994,37 @@ img {
   margin-bottom: 1rem;
 }
 
+.founder-story-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 0.5rem auto 1.75rem;
+}
+
+.founder-story-intro .badge {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.05rem;
+  font-weight: 800;
+  padding: 0.45rem 1rem;
+  letter-spacing: 0.05em;
+}
+
+.founder-story-heading {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: clamp(2.6rem, 5.2vw + 1rem, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
 .testimonies-section {
   background-color: var(--light-bg);
 }
@@ -1295,10 +1348,11 @@ img {
 
 .founder-photo {
   width: 100%;
+  max-width: 640px;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   display: block;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
 }
 
 /* Scroll Reveal & Infinite Scroll Styles */
@@ -1596,8 +1650,13 @@ img {
   }
   
   .site-logo-icon {
-    width: 36px;
-    height: 36px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .footer-logo {
+    width: 48px;
+    height: 48px;
   }
 }
 
