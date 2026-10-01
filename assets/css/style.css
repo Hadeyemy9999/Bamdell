@@ -472,12 +472,15 @@ img {
 .site-logo-icon {
   width: 72px;
   height: 72px;
+  max-width: none;
   background: none;
   color: inherit;
   border: none;
   border-radius: 0;
   box-shadow: none;
   outline: none;
+  padding: 0;
+  margin: 0;
   display: block;
   object-fit: contain;
   object-position: center;
@@ -495,12 +498,15 @@ img {
 .footer-logo {
   width: 52px;
   height: 52px;
+  max-width: none;
   flex-shrink: 0;
   background: none;
   border: none;
   border-radius: 0;
   box-shadow: none;
   outline: none;
+  padding: 0;
+  margin: 0;
   display: block;
   object-fit: contain;
   object-position: center;
