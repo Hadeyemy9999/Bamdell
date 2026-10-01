@@ -155,7 +155,7 @@ async function sendVolunteerEmails({ fullName, email, phone, state, role, experi
           </div>
 
           <p style="font-size: 12px; color: #6B7280; border-top: 1px solid #E5E7EB; padding-top: 12px; margin: 0;">
-            Center: 5B/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan | Helplines: 07030700033, 08023129353
+            Center: E6/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan | Helplines: 07030700033, 08023129353
           </p>
         </div>
       </div>
@@ -171,7 +171,7 @@ async function sendVolunteerEmails({ fullName, email, phone, state, role, experi
     text: `Dear ${cleanName},\n\n` +
           `Thank you for offering your heart and time to volunteer with Bam Dell Disabilities and Orphanage Home (${cleanRole}).\n\n` +
           `We have received your application. Our coordination team in Ibadan will review your details and contact you shortly to schedule an orientation.\n\n` +
-          `Address: 5B/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan\n` +
+          `Address: E6/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan\n` +
           `Phone / WhatsApp: 07030700033, 08023129353\n` +
           `Social: @bam_dell / bamdellhome\n\n` +
           `"Let Love Lead"`,
@@ -189,7 +189,7 @@ async function sendVolunteerEmails({ fullName, email, phone, state, role, experi
           <div style="background-color: #F0FDF4; border: 1px solid #BBF7D0; padding: 16px; border-radius: 6px; margin: 20px 0;">
             <h4 style="margin: 0 0 8px; color: #0D9488;">📍 Our Ibadan Center:</h4>
             <p style="margin: 0; font-size: 14px; color: #15803D;">
-              5B/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan, Oyo State.<br>
+              E6/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan, Oyo State.<br>
               Direct Helplines: <b>07030700033</b> | <b>08023129353</b> | <b>08029594000</b>
             </p>
           </div>
@@ -287,7 +287,7 @@ async function sendContactEmails({ name, email, phone, subject, message, fileAtt
     text: `Dear ${cleanName},\n\n` +
           `Thank you for contacting Bam Dell Disabilities and Orphanage Home regarding "${cleanSubject}".\n\n` +
           `We have received your message and will get back to you promptly.\n\n` +
-          `Center: 5B/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan, Nigeria.\n` +
+          `Center: E6/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan, Nigeria.\n` +
           `Phones: 07030700033, 08023129353, 08029594000\n\n` +
           `Let Love Lead`,
     html: `
@@ -303,7 +303,7 @@ async function sendContactEmails({ name, email, phone, subject, message, fileAtt
           
           <div style="background-color: #FEF3C7; border: 1px solid #FDE68A; padding: 14px; border-radius: 6px; margin: 20px 0;">
             <p style="margin: 0; font-size: 13px; color: #92400E;">
-              📍 <b>Center Location:</b> 5B/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan.<br>
+              📍 <b>Center Location:</b> E6/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan.<br>
               📞 <b>Direct Line:</b> 07030700033 | 08023129353
             </p>
           </div>

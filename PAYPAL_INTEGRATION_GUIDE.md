@@ -324,5 +324,5 @@ Before deploying live:
 For assistance with PayPal technical configuration:
 - **PayPal Developer Docs:** [https://developer.paypal.com/docs/](https://developer.paypal.com/docs/)
 - **Bam Dell IT / Web Admin:** `bwayzconcept@gmail.com`
-- **Official NGO Contact:** Bolude Hall, Alafara, Ibadan, Oyo State, Nigeria
+- **Official NGO Contact:** E6/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan, Oyo State, Nigeria
 - **Motto:** *Let Love Lead*
