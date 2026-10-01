@@ -5,9 +5,12 @@
  * Implements mobile-friendly responsive navigation with backdrop & touch handling.
  */
 
+// Bump this value whenever shared components change to bust stale browser caches.
+const COMPONENT_CACHE_VERSION = '20261001-1';
+
 document.addEventListener('DOMContentLoaded', async () => {
-  await loadComponent('header-include', '/components/header.html', getHeaderFallback());
-  await loadComponent('footer-include', '/components/footer.html', getFooterFallback());
+  await loadComponent('header-include', '/components/header.html?v=' + COMPONENT_CACHE_VERSION, getHeaderFallback());
+  await loadComponent('footer-include', '/components/footer.html?v=' + COMPONENT_CACHE_VERSION, getFooterFallback());
 
   // Initialize navigation & active states
   initNavigation();
