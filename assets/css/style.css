@@ -936,8 +936,8 @@ img {
   margin-right: calc(-1 * clamp(0.75rem, 2.5vw, 2rem));
   padding: clamp(4rem, 8vh, 5.5rem) clamp(1.75rem, 8vw, 7rem) clamp(3rem, 6vh, 4.5rem);
   background:
-    radial-gradient(720px 280px at 0% 0%, rgba(204, 251, 241, 0.55), transparent 60%),
-    linear-gradient(135deg, #F4FBF8 0%, #FFF8EB 100%);
+    radial-gradient(80% 70% at 50% 0%, rgba(15, 118, 110, 0.28), transparent 68%),
+    linear-gradient(180deg, #99F6E4 0%, #CCFBF1 42%, #F4FBF8 78%, #FFF8EB 100%);
   color: #1C1917;
   border-bottom: 1px solid var(--border-color);
 }
