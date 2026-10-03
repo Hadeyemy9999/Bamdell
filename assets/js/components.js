@@ -6,7 +6,7 @@
  */
 
 // Bump this value whenever shared components change to bust stale browser caches.
-const COMPONENT_CACHE_VERSION = '20261001-1';
+const COMPONENT_CACHE_VERSION = '20261001-2';
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadComponent('header-include', '/components/header.html?v=' + COMPONENT_CACHE_VERSION, getHeaderFallback());
@@ -175,7 +175,7 @@ function getFooterFallback() {
     <footer class="site-footer">
       <div class="container text-center">
         <p>© 2026 Bam Dell Disabilities and Orphanage Home — <i>Let Love Lead</i></p>
-        <p style="font-size: 0.85rem; color: #9CA3AF;">E6/5A, Opposite Bolude Hall, Alafara, Olubadan Adeoti, Ibadan | 07030700033</p>
+        <p style="font-size: 0.85rem; color: #9CA3AF;">E6/5A, Opposite Bolude Hall, Alafara, Olubadan, Adeoti, Ibadan, Oyo State, Nigeria | 07030700033</p>
         <div class="flex justify-center gap-3 flex-wrap" style="margin-top: 1rem;">
           <a href="/safeguarding.html">Safeguarding</a> | 
           <a href="/privacy-policy.html">Privacy Policy</a> | 
