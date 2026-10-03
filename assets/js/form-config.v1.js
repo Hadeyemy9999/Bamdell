@@ -13,5 +13,12 @@ const FORM_BACKEND = {
   maxFileSizeMB: 4
 };
 
-// Expose globally for browser execution
+const PAYMENT_CONFIG = {
+  flutterwavePublicKey: '',
+  monnifyApiKey: '',
+  monnifyContractCode: '',
+  monnifyIsTestMode: true
+};
+
 window.FORM_BACKEND = FORM_BACKEND;
+window.PAYMENT_CONFIG = PAYMENT_CONFIG;

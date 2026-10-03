@@ -1627,6 +1627,61 @@ img {
   transform: translateY(-2px);
 }
 
+.payment-gateway-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.btn-flutterwave {
+  background-color: #F5A623;
+  color: #1F2937;
+  border-color: #F5A623;
+  width: 100%;
+}
+
+.btn-flutterwave:hover {
+  background-color: #E09716;
+  color: #1F2937;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-monnify {
+  background-color: #0B5FFF;
+  color: #FFFFFF;
+  border-color: #0B5FFF;
+  width: 100%;
+}
+
+.btn-monnify:hover {
+  background-color: #0847C7;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.payment-checkout-status {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--dark-muted);
+  min-height: 1.2em;
+}
+
+.payment-checkout-status.is-error {
+  color: #991B1B;
+}
+
+.payment-checkout-status.is-success {
+  color: #166534;
+}
+
+@media (max-width: 640px) {
+  .payment-gateway-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Vision Statement Placeholder Card */
 .vision-placeholder-box {
   background-color: #F8FAFC;

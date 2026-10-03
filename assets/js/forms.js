@@ -1,7 +1,7 @@
 /**
  * Bam Dell Disabilities and Orphanage Home - Form & Donation Engine
  * Handles client-side accessible validation, SpamGuard protection,
- * Serverless SMTP endpoint integration, Paystack checkout simulation,
+ * Serverless SMTP endpoint integration, Flutterwave and Monnify checkout,
  * and copy-to-clipboard bank details.
  */
 
@@ -11,85 +11,287 @@ document.addEventListener('DOMContentLoaded', () => {
   initBankDetailsCopy();
 });
 
+function getPaymentConfig() {
+  return window.PAYMENT_CONFIG || {
+    flutterwavePublicKey: '',
+    monnifyApiKey: '',
+    monnifyContractCode: '',
+    monnifyIsTestMode: true
+  };
+}
+
+function setPaymentStatus(message, type) {
+  const statusEl = document.getElementById('payment-checkout-status');
+  if (!statusEl) return;
+  statusEl.textContent = message || '';
+  statusEl.classList.remove('is-error', 'is-success');
+  if (type) statusEl.classList.add(type);
+}
+
+function buildDonationReference(prefix) {
+  return prefix + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 8).toUpperCase();
+}
+
+function splitDonorName(fullName) {
+  const parts = (fullName || '').trim().split(/\s+/).filter(Boolean);
+  return {
+    firstName: parts[0] || 'Friend',
+    lastName: parts.slice(1).join(' ') || 'Donor'
+  };
+}
+
 /* Interactive Donation Calculator Engine */
 function initDonationCalculator() {
-  const donationPresets = document.querySelectorAll('.donation-preset');
-  const customAmountInput = document.getElementById('custom-donation-amount');
-  const donationFrequencyBtns = document.querySelectorAll('.donation-freq-btn');
-  const checkoutBtn = document.getElementById('paystack-checkout-btn');
+  const donationForm = document.getElementById('donation-submit-form');
+  const donationPresets = document.querySelectorAll('.amount-opt-btn');
+  const customAmountInput = document.getElementById('custom-amount-input');
+  const freqOneTime = document.getElementById('freq-onetime');
+  const freqMonthly = document.getElementById('freq-monthly');
+  const flutterwaveBtn = document.getElementById('flutterwave-checkout-btn');
+  const monnifyBtn = document.getElementById('monnify-checkout-btn');
+  const impactEstimate = document.getElementById('impact-estimate');
   const donationImpactNotice = document.getElementById('donation-impact-notice');
 
-  if (!checkoutBtn) return;
+  if (!donationForm && !flutterwaveBtn && !monnifyBtn) return;
 
-  let currentAmount = 15000; // Default preset ₦15,000
+  let currentAmount = parseInt(customAmountInput && customAmountInput.value, 10) || 35000;
   let currentFreq = 'one-time';
 
   const impactDescriptions = {
-    5000: "₦5,000 provides nutritious school meals and therapeutic snacks for a child for one full month.",
-    15000: "₦15,000 funds a complete braille/adaptive learning kit and specialized school supplies.",
-    50000: "₦50,000 sponsors a custom mobility aid (adaptive wheelchair or pediatric crutches) for a child.",
-    100000: "₦100,000 covers 3 months of comprehensive speech therapy & physical rehabilitation sessions."
+    5000: 'Nutritious school meals and therapeutic snacks for a child for one full month.',
+    15000: 'A complete adaptive learning kit and specialized school supplies.',
+    35000: 'Full month of nutritious meals, daily diapers, and basic medication for a special needs child at Bam Dell Home.',
+    75000: 'Speech therapy and physiotherapy sessions plus essential medical supplies.',
+    150000: 'Mobility support, rehabilitation, and several weeks of shelter and feeding for children in our care.'
   };
 
-  donationPresets.forEach(btn => {
-    btn.addEventListener('click', () => {
-      donationPresets.forEach(b => b.classList.remove('btn-primary'));
-      donationPresets.forEach(b => b.classList.add('btn-outline'));
-      
-      btn.classList.remove('btn-outline');
-      btn.classList.add('btn-primary');
+  function updateImpactDescription(amount) {
+    const fallback = amount > 0
+      ? `Your generous gift of ₦${amount.toLocaleString()} directly transforms the lives of vulnerable children in Nigeria.`
+      : 'Please select or enter a donation amount.';
+    const detail = impactDescriptions[amount] || fallback;
+    const title = amount > 0 ? `Your ₦${amount.toLocaleString()} Gift Provides:` : 'Choose a gift amount';
 
-      currentAmount = parseInt(btn.getAttribute('data-amount'), 10);
-      if (customAmountInput) customAmountInput.value = '';
+    if (impactEstimate) {
+      const heading = impactEstimate.querySelector('div');
+      const body = impactEstimate.querySelector('p');
+      if (heading) heading.textContent = title;
+      if (body) body.textContent = detail;
+    }
+    if (donationImpactNotice) {
+      donationImpactNotice.textContent = amount > 0 ? `Your ₦${amount.toLocaleString()} gift provides: ${detail}` : fallback;
+    }
+  }
+
+  function setActivePreset(activeBtn) {
+    donationPresets.forEach((btn) => {
+      btn.classList.remove('btn-primary');
+      btn.classList.add('btn-outline');
+    });
+    if (activeBtn) {
+      activeBtn.classList.remove('btn-outline');
+      activeBtn.classList.add('btn-primary');
+    }
+  }
+
+  donationPresets.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const rawAmount = btn.getAttribute('data-amount');
+      setActivePreset(btn);
+      if (rawAmount === 'custom') {
+        if (customAmountInput) {
+          customAmountInput.focus();
+          customAmountInput.select();
+        }
+        currentAmount = parseInt(customAmountInput && customAmountInput.value, 10) || 0;
+      } else {
+        currentAmount = parseInt(rawAmount, 10) || 0;
+        if (customAmountInput) customAmountInput.value = String(currentAmount);
+      }
       updateImpactDescription(currentAmount);
     });
   });
 
   if (customAmountInput) {
     customAmountInput.addEventListener('input', () => {
-      donationPresets.forEach(b => {
-        b.classList.remove('btn-primary');
-        b.classList.add('btn-outline');
-      });
       const val = parseInt(customAmountInput.value, 10);
       currentAmount = isNaN(val) ? 0 : val;
+      const matching = Array.from(donationPresets).find((btn) => btn.getAttribute('data-amount') === String(currentAmount));
+      setActivePreset(matching || Array.from(donationPresets).find((btn) => btn.getAttribute('data-amount') === 'custom'));
       updateImpactDescription(currentAmount);
     });
   }
 
-  donationFrequencyBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      donationFrequencyBtns.forEach(b => b.classList.remove('is-selected'));
-      btn.classList.add('is-selected');
-      currentFreq = btn.getAttribute('data-freq');
-    });
-  });
-
-  function updateImpactDescription(amount) {
-    if (!donationImpactNotice) return;
-    if (impactDescriptions[amount]) {
-      donationImpactNotice.textContent = impactDescriptions[amount];
-    } else if (amount > 0) {
-      donationImpactNotice.textContent = `Your generous gift of ₦${amount.toLocaleString()} directly transforms the lives of vulnerable children in Nigeria.`;
-    } else {
-      donationImpactNotice.textContent = "Please select or enter a donation amount.";
+  function setFrequency(freq) {
+    currentFreq = freq;
+    if (freqOneTime && freqMonthly) {
+      freqOneTime.classList.toggle('btn-primary', freq === 'one-time');
+      freqOneTime.classList.toggle('btn-outline', freq !== 'one-time');
+      freqMonthly.classList.toggle('btn-primary', freq === 'monthly');
+      freqMonthly.classList.toggle('btn-outline', freq !== 'monthly');
     }
   }
 
-  // Paystack Integration / Simulation Trigger
-  checkoutBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (currentAmount <= 0) {
-      alert("Please select or enter a valid donation amount.");
+  if (freqOneTime) {
+    freqOneTime.addEventListener('click', () => setFrequency('one-time'));
+  }
+  if (freqMonthly) {
+    freqMonthly.addEventListener('click', () => setFrequency('monthly'));
+  }
+
+  function readDonorDetails() {
+    const nameInput = document.getElementById('donor-name');
+    const emailInput = document.getElementById('donor-email');
+    const phoneInput = document.getElementById('donor-phone');
+    const amountInput = document.getElementById('custom-amount-input');
+    const name = nameInput ? nameInput.value.trim() : '';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const phone = phoneInput ? phoneInput.value.trim() : '';
+    const amount = parseInt(amountInput && amountInput.value, 10) || currentAmount;
+
+    if (!name) {
+      setPaymentStatus('Please enter your full name before paying.', 'is-error');
+      if (nameInput) nameInput.focus();
+      return null;
+    }
+    if (!email || !validateEmailFormat(email)) {
+      setPaymentStatus('Please enter a valid email address before paying.', 'is-error');
+      if (emailInput) emailInput.focus();
+      return null;
+    }
+    if (!amount || amount < 1000) {
+      setPaymentStatus('Please enter a donation of at least ₦1,000.', 'is-error');
+      if (amountInput) amountInput.focus();
+      return null;
+    }
+
+    currentAmount = amount;
+    return { name, email, phone, amount };
+  }
+
+  function launchFlutterwaveCheckout() {
+    const donor = readDonorDetails();
+    if (!donor) return;
+
+    const config = getPaymentConfig();
+    if (!config.flutterwavePublicKey) {
+      setPaymentStatus('Flutterwave is ready on this page. Add your Flutterwave public key in assets/js/form-config.v1.js to go live.', 'is-error');
+      return;
+    }
+    if (typeof FlutterwaveCheckout !== 'function') {
+      setPaymentStatus('Flutterwave checkout could not load. Please refresh and try again.', 'is-error');
       return;
     }
 
-    const confirmMsg = `Thank you for supporting Bam Dell Disabilities and Orphanage Home!\n\nDonation Summary:\nAmount: ₦${currentAmount.toLocaleString()}\nFrequency: ${currentFreq === 'monthly' ? 'Monthly Recurring' : 'One-Time'}\n\nYou will now be directed to Paystack secure checkout portal.`;
-    
-    if (confirm(confirmMsg)) {
-      alert("Redirecting to Paystack secure payment gateway... (Demo Mode Active)");
+    const names = splitDonorName(donor.name);
+    setPaymentStatus('Opening Flutterwave checkout...');
+    FlutterwaveCheckout({
+      public_key: config.flutterwavePublicKey,
+      tx_ref: buildDonationReference('BAMD-FLW-'),
+      amount: donor.amount,
+      currency: 'NGN',
+      payment_options: 'card,banktransfer,ussd,account,mobilemoneyghana',
+      customer: {
+        email: donor.email,
+        phone_number: donor.phone || '07030700033',
+        name: donor.name
+      },
+      customizations: {
+        title: 'Bam Dell Home',
+        description: currentFreq === 'monthly' ? 'Monthly donation to Bam Dell Home' : 'One-time donation to Bam Dell Home',
+        logo: 'https://res.cloudinary.com/ngts2ryy/image/upload/v1790504318/IMG_20260927_111654_662.jpg'
+      },
+      meta: {
+        frequency: currentFreq,
+        first_name: names.firstName,
+        last_name: names.lastName
+      },
+      callback: function (response) {
+        if (response && (response.status === 'successful' || response.status === 'completed')) {
+          setPaymentStatus('Thank you. Your Flutterwave donation was received. A receipt will follow by email.', 'is-success');
+        } else {
+          setPaymentStatus('Flutterwave checkout closed before completion. You can try again or use bank transfer.', 'is-error');
+        }
+      },
+      onclose: function () {
+        const statusEl = document.getElementById('payment-checkout-status');
+        if (statusEl && !statusEl.classList.contains('is-success')) {
+          setPaymentStatus('Flutterwave checkout closed.');
+        }
+      }
+    });
+  }
+
+  function launchMonnifyCheckout() {
+    const donor = readDonorDetails();
+    if (!donor) return;
+
+    const config = getPaymentConfig();
+    if (!config.monnifyApiKey || !config.monnifyContractCode) {
+      setPaymentStatus('Monnify is ready on this page. Add your API key and contract code in assets/js/form-config.v1.js to go live.', 'is-error');
+      return;
     }
-  });
+    if (!window.MonnifySDK || typeof window.MonnifySDK.initialize !== 'function') {
+      setPaymentStatus('Monnify checkout could not load. Please refresh and try again.', 'is-error');
+      return;
+    }
+
+    const names = splitDonorName(donor.name);
+    setPaymentStatus('Opening Monnify checkout...');
+    window.MonnifySDK.initialize({
+      amount: donor.amount,
+      currency: 'NGN',
+      reference: buildDonationReference('BAMD-MNF-'),
+      customerFullName: donor.name,
+      customerEmail: donor.email,
+      customerMobileNumber: donor.phone || '07030700033',
+      apiKey: config.monnifyApiKey,
+      contractCode: config.monnifyContractCode,
+      paymentDescription: currentFreq === 'monthly' ? 'Monthly donation to Bam Dell Home' : 'One-time donation to Bam Dell Home',
+      isTestMode: config.monnifyIsTestMode !== false,
+      metadata: {
+        frequency: currentFreq,
+        firstName: names.firstName,
+        lastName: names.lastName
+      },
+      onComplete: function (response) {
+        const paid = response && (response.paymentStatus === 'PAID' || response.status === 'SUCCESS' || response.completed === true);
+        if (paid) {
+          setPaymentStatus('Thank you. Your Monnify donation was received. A receipt will follow by email.', 'is-success');
+        } else {
+          setPaymentStatus('Monnify checkout closed before completion. You can try again or use bank transfer.', 'is-error');
+        }
+      },
+      onClose: function () {
+        const statusEl = document.getElementById('payment-checkout-status');
+        if (statusEl && !statusEl.classList.contains('is-success')) {
+          setPaymentStatus('Monnify checkout closed.');
+        }
+      }
+    });
+  }
+
+  if (flutterwaveBtn) {
+    flutterwaveBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      launchFlutterwaveCheckout();
+    });
+  }
+  if (monnifyBtn) {
+    monnifyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      launchMonnifyCheckout();
+    });
+  }
+
+  if (donationForm) {
+    donationForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      launchFlutterwaveCheckout();
+    });
+  }
+
+  updateImpactDescription(currentAmount);
 }
 
 /* Serverless Form Submission & Validation Engine */
