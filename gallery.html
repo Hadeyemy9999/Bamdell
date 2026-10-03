@@ -88,18 +88,10 @@
           </article>
 
           <article class="card gallery-card">
-            <div class="hero-carousel" data-media-carousel data-interval="40000" data-height="220" data-slides='["https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260910_110409.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260911_093831.jpg","https://res.cloudinary.com/im4j3tkd/image/upload/2317.jpg"]' aria-roledescription="carousel" aria-label="Therapy photos from Bam Dell Home">
-              <div class="hero-carousel-viewport" style="position:relative;width:100%;height:220px;overflow:hidden;border-radius:16px;background:#fff;">
-                <img class="hero-carousel-current" src="https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260910_110409.jpg" alt="Physiotherapy at Bam Dell Home" style="position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);object-fit:cover;max-width:none;" />
-                <img class="hero-carousel-incoming" src="https://res.cloudinary.com/im4j3tkd/image/upload/IMG_20260911_093831.jpg" alt="" style="position:absolute;top:2px;left:2px;width:calc(100% - 4px);height:calc(100% - 4px);object-fit:cover;max-width:none;transform:translateX(100%);" />
-                <button type="button" class="hero-carousel-btn hero-carousel-prev" aria-label="Previous photo">&#10094;</button>
-                <button type="button" class="hero-carousel-btn hero-carousel-next" aria-label="Next photo">&#10095;</button>
-              </div>
-              <div class="hero-carousel-dots" role="tablist" aria-label="Therapy photo slides">
-                <button type="button" class="is-active" aria-label="Show photo 1" aria-current="true"></button>
-                <button type="button" aria-label="Show photo 2"></button>
-                <button type="button" aria-label="Show photo 3"></button>
-              </div>
+            <div class="video-stage" data-video-player data-vimeo="therapy" data-frames='["/assets/images/gallery-therapy.svg","/assets/images/gallery-care.svg","/assets/images/gallery-play.svg"]'>
+              <img src="/assets/images/gallery-therapy.svg" data-media="galleryTherapy" alt="Physiotherapy at Bam Dell Home" />
+              <button type="button" class="video-play-btn" data-video-play aria-pressed="false">Play</button>
+              <div class="video-progress" data-video-progress><span></span></div>
             </div>
             <div class="gallery-card-body">
               <h3>Therapy in Motion</h3>

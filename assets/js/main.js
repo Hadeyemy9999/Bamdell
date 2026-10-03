@@ -399,6 +399,41 @@ function optimizeCloudinaryUrl(url) {
   return url.replace('/upload/', '/upload/f_auto,q_auto,c_fill,w_1200/');
 }
 
+const LOCAL_MEDIA_KEY_MAP = {
+  'hero-children.svg': 'hero',
+  'founder-portrait.svg': 'founder',
+  'kingdavid-before.svg': 'kingdavidBefore',
+  'kingdavid-after.svg': 'kingdavidAfter',
+  'gallery-care.svg': 'galleryCare',
+  'gallery-meals.svg': 'galleryMeals',
+  'gallery-therapy.svg': 'galleryTherapy',
+  'gallery-classroom.svg': 'galleryClassroom',
+  'gallery-play.svg': 'galleryPlay',
+  'gallery-home.svg': 'galleryHome',
+  'gallery-visit.svg': 'galleryVisit',
+  'gallery-worship.svg': 'galleryWorship',
+  'gallery-mobility.svg': 'galleryMobility',
+  'gallery-story.svg': 'galleryStory',
+  'video-poster-life.svg': 'videoPosterLife',
+  'program-therapy.svg': 'galleryTherapy',
+  'program-education.svg': 'galleryClassroom',
+  'program-assistive.svg': 'galleryMobility',
+  'program-community.svg': 'galleryVisit'
+};
+
+function resolveMediaUrl(value) {
+  if (!value) return '';
+  const raw = String(value).trim();
+  if (!raw) return '';
+  if (/^https?:\/\//i.test(raw)) return optimizeCloudinaryUrl(raw);
+
+  const filename = raw.split('/').pop();
+  const key = LOCAL_MEDIA_KEY_MAP[filename];
+  const images = (getMediaConfig().images || {});
+  if (key && images[key]) return optimizeCloudinaryUrl(images[key]);
+  return raw;
+}
+
 function videoEmbedUrl(value) {
   if (!value) return '';
   const raw = String(value).trim();
@@ -441,10 +476,33 @@ function applyRemoteMedia() {
     } else if (typeof value === 'string') {
       remote = optimizeCloudinaryUrl(value);
     }
+    if (!remote) remote = resolveMediaUrl(img.getAttribute('src'));
     if (!remote) return;
     img.setAttribute('src', remote);
     const wrap = img.closest('[data-lightbox]');
     if (wrap) wrap.setAttribute('data-lightbox', remote);
+  });
+
+  document.querySelectorAll('img:not([data-media])').forEach(img => {
+    const remote = resolveMediaUrl(img.getAttribute('src'));
+    if (!remote || remote === img.getAttribute('src')) return;
+    img.setAttribute('src', remote);
+  });
+
+  document.querySelectorAll('[data-lightbox]').forEach(wrap => {
+    const remote = resolveMediaUrl(wrap.getAttribute('data-lightbox'));
+    if (remote) wrap.setAttribute('data-lightbox', remote);
+  });
+
+  document.querySelectorAll('[data-frames]').forEach(stage => {
+    let frames = [];
+    try {
+      frames = JSON.parse(stage.getAttribute('data-frames') || '[]');
+    } catch (err) {
+      frames = [];
+    }
+    const resolved = frames.map(resolveMediaUrl).filter(Boolean);
+    if (resolved.length) stage.setAttribute('data-frames', JSON.stringify(resolved));
   });
 
   document.querySelectorAll('[data-vimeo]').forEach(stage => {

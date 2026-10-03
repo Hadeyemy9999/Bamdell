@@ -52,11 +52,11 @@ window.BAMDELL_MEDIA = {
   videos: {
     lifeAtHome: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=Video_Editor_20260919_19_47_35',
     therapy: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=258',
-    learning: '',
-    meals: '',
+    learning: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=258',
+    meals: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=Video_Editor_20260919_19_47_35',
     play: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=128',
     visit: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=128',
-    homeTour: '',
-    worship: ''
+    homeTour: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=Video_Editor_20260919_19_47_35',
+    worship: 'https://player.cloudinary.com/embed/?cloud_name=im4j3tkd&public_id=128'
   }
 };
