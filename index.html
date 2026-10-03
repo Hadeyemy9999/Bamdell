@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://res.cloudinary.com/im4j3tkd/image/upload/1000414309.jpg" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261003-4" />
   <link rel="stylesheet" href="/assets/css/accessibility.css" />
 </head>
 <body>
@@ -67,11 +67,21 @@
     </section>
     -->
 
-    <section class="hero hero-alt" aria-labelledby="hero-title">
+    <section class="hero hero-alt hero-welcome" aria-labelledby="hero-title" style="display:flex;align-items:center;justify-content:center;min-height:0;padding:4.5rem 2.5rem 3.5rem;">
+      <div class="hero-welcome-inner" style="width:100%;max-width:1100px;margin:0 auto;padding:1.5rem;text-align:center;">
+        <h1 id="hero-title" class="hero-welcome-title" style="margin:0;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.55rem;text-align:center;color:#1C1917;">
+          <span class="hero-line hero-line-welcome" data-typewriter data-typewriter-text="Welcome" style="display:block;width:100%;font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800;line-height:1.05;color:#1C1917;text-align:center;">Welcome</span>
+          <span class="hero-line hero-line-to" data-typewriter data-typewriter-text="to" style="display:block;width:100%;font-size:clamp(3rem,8vw,6rem);font-weight:700;letter-spacing:0.28em;color:#0F766E;text-align:center;">to</span>
+          <span class="hero-line hero-line-home" data-typewriter data-typewriter-text="Bamdell Disabilities and Orphanage Home" style="display:block;width:100%;font-size:clamp(1.9rem,5vw,3.8rem);font-weight:800;color:#1C1917;text-align:center;">Bamdell Disabilities and Orphanage Home</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="hero hero-alt" aria-labelledby="hero-title-copy">
       <div class="container grid grid-2 items-center">
         <div>
           <span class="badge badge-accent">Motto: Let Love Lead</span>
-          <h1 id="hero-title" class="hero-alt-title">People With Disabilities Can Live Beyond Limit</h1>
+          <h1 id="hero-title-copy" class="hero-alt-title">People With Disabilities Can Live Beyond Limit</h1>
           <p style="font-size: 1.15rem; font-weight: 600; color: var(--primary-hover); margin-bottom: 0.75rem;">
             We care for children with disabilities, Orphans, Motherless Babies
           </p>
@@ -774,6 +784,6 @@
   <script src="/assets/js/spam-guard.js"></script>
   <script src="/assets/js/forms.js"></script>
   <script src="/assets/js/media-config.js"></script>
-  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/main.js?v=20261003-4"></script>
 </body>
 </html>

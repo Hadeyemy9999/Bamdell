@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSiteMarquee();
   applyRemoteMedia();
   initHeroCarousel();
+  initTypewriter();
   initLazyImages();
   initScrollReveal();
   initInfiniteScroll();
@@ -61,6 +62,57 @@ function initScrollReveal() {
   }, observerOptions);
 
   revealTargets.forEach(target => observer.observe(target));
+}
+
+function initTypewriter() {
+  const hero = document.querySelector('.hero-welcome');
+  if (!hero) return;
+  const nodes = Array.from(hero.querySelectorAll('[data-typewriter]'));
+  if (!nodes.length) return;
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    nodes.forEach(node => {
+      node.textContent = node.getAttribute('data-typewriter-text') || node.textContent;
+      node.style.visibility = 'visible';
+    });
+    return;
+  }
+
+  nodes.forEach((node, index) => {
+    node.dataset.fullText = node.getAttribute('data-typewriter-text') || node.textContent || '';
+    node.textContent = '';
+    node.style.visibility = index === 0 ? 'visible' : 'hidden';
+  });
+
+  const typeNode = (node, done) => {
+    const fullText = node.dataset.fullText || '';
+    node.style.visibility = 'visible';
+    if (!fullText) {
+      done();
+      return;
+    }
+    node.classList.add('is-typing');
+    let i = 0;
+    const tick = () => {
+      i += 1;
+      node.textContent = fullText.slice(0, i);
+      if (i < fullText.length) {
+        window.setTimeout(tick, 80);
+      } else {
+        node.classList.remove('is-typing');
+        window.setTimeout(done, 600);
+      }
+    };
+    tick();
+  };
+
+  const runSequence = (index) => {
+    if (index >= nodes.length) return;
+    typeNode(nodes[index], () => runSequence(index + 1));
+  };
+
+  window.setTimeout(() => runSequence(0), 400);
 }
 
 function initSiteMarquee() {
