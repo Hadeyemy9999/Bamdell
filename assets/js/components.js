@@ -6,7 +6,7 @@
  */
 
 // Bump this value whenever shared components change to bust stale browser caches.
-const COMPONENT_CACHE_VERSION = '20261001-2';
+const COMPONENT_CACHE_VERSION = '20261003-1';
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadComponent('header-include', '/components/header.html?v=' + COMPONENT_CACHE_VERSION, getHeaderFallback());
